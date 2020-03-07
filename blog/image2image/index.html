@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="This is meta description">
+ <meta name="author" content="Themefisher">
+<meta name="generator" content="Hugo 0.66.0" />
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+
+<title>GAN을 이용한 Image to Image Translation: Pix2Pix, CycleGAN, DiscoGAN</title>
+
+<!-- Mobile Specific Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="https://taeoh-kim.github.io/images/favicon.ico" />
+
+<!-- Stylesheets -->
+<!-- Themefisher Icon font -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/themefisher-font/style.css">
+<!-- bootstrap.min css -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/bootstrap/dist/css/bootstrap.min.css">
+<!-- Lightbox.min css -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/lightbox2/dist/css/lightbox.min.css">
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/slick-carousel/slick/slick.css">
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/slick-carousel/slick/slick-theme.css">
+<!-- Main Stylesheet -->
+
+
+<link rel="stylesheet" href="https://taeoh-kim.github.io/css/style.min.css" media="screen">
+
+</head>
+<body id="body">
+        <!-- Start Preloader -->
+<div id="preloader">
+    <div class="preloader">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+    </div>
+</div>
+<!-- End Preloader --><!-- Fixed Navigation -->
+
+
+<section class="header navigation">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="https://taeoh-kim.github.io/">
+                        <img src="https://taeoh-kim.github.io/images/logo_taeoh.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="tf-ion-android-menu"></span>
+                    </button>
+                    
+                    <div id="drapeaux">
+                        
+                        
+                    </div>
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                    href="https://taeoh-kim.github.io/">Home</a>
+                            </li>
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/about">About</a>
+                            </li>
+                            
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/service">Publications</a>
+                            </li>
+                            
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/blog">Blog</a>
+                            </li>
+                            
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/contact">Contact</a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><div id="content">
+
+<section class="blog-single section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <img src="https://taeoh-kim.github.io/img/c5.PNG" class="w-100 mb-3" alt="Post-Image">
+                <h2>GAN을 이용한 Image to Image Translation: Pix2Pix, CycleGAN, DiscoGAN</h2>
+                <div class="post-meta mb-5">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <span>By</span>
+                            Taeoh Kim
+                        </li>
+                        <li class="list-inline-item">
+                            <span>at</span>
+                            <span>October 26, 2017</span>
+                        </li>
+                    </ul>
+                </div>
+                <h2 id="computer-vision-and-machine-learning-study-post-6">Computer Vision and Machine Learning Study Post 6</h2>
+<h3 id="gan을-이용한-image-to-image-translation-pix2pix-cyclegan-discogan">GAN을 이용한 Image to Image Translation: Pix2Pix, CycleGAN, DiscoGAN</h3>
+<p><br><br>
+줄기가 되는 Main Reference Paper입니다.</p>
+<ul>
+<li>Pix2Pix: <a href="https://arxiv.org/abs/1611.07004">Image-to-Image Translation with Conditional Adversarial Networks, Phillip Isola, Jun-Yan Zhu, Tinghui Zhou and Alexei A. Efros, CVPR 2017</a></li>
+<li>CycleGAN: <a href="https://arxiv.org/abs/1703.10593">Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks, Jun-Yan Zhu, Taesung Park, Phillip Isol a and Alexei A. Efros, ICCV 2017</a></li>
+<li>DiscoGAN: <a href="https://arxiv.org/abs/1703.05192">Learning to Discover Cross-Domain Relations with Generative Adversarial Networks, Taeksoo Kim, Moonsu Cha, Hyunsoo Kim, Jung Kwon Lee and Jiwon Kim, ICML 2017</a></li>
+</ul>
+<br>
+각 Paper의 Github입니다, 모두 Pytorch로 구현되었습니다.
+<ul>
+<li><a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">Pix2Pix와 CycleGAN</a></li>
+<li><a href="https://github.com/SKTBrain/DiscoGAN">DiscoGAN</a></li>
+</ul>
+<br>
+참고가 되는 Reference Paper List입니다
+<ul>
+<li><a href="https://arxiv.org/abs/1511.06434">DCGAN</a></li>
+<li><a href="https://arxiv.org/abs/1611.04076">LSGAN</a></li>
+<li><a href="https://arxiv.org/abs/1505.04597">U-Net</a></li>
+<li><a href="https://arxiv.org/abs/1512.03385">Resnet</a></li>
+<li><a href="https://arxiv.org/abs/1603.08511">Image Colorization</a></li>
+<li><a href="https://arxiv.org/abs/1604.05383">3D Cycle-Consistency</a></li>
+</ul>
+<br>
+또한, 다음 두 발표는 본 블로그를 작성하는데 매우 큰 도움이 되었으며, 특히 박태성님의 CycleGAN 발표가 흐름을 작성하는데 매우 큰 영향을 주었습니다.
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Fkqf3dS9Cqw&amp;t=2799s">박태성 연구원님의 CycleGAN 발표, Naver D2</a></li>
+<li>김택수 연구원님의 DiscoGAN 발표, SmartConnectedWorld 2017</li>
+</ul>
+<br>
+이에 대한 이해를 바탕으로 제가 직접 구현한 코드는 아래 Github를 통해 확인하실 수 있습니다.
+<ul>
+<li><a href="https://github.com/taeoh-kim/Pytorch_Pix2Pix">Pix2Pix in Pytorch by Taeoh Kim</a></li>
+<li><a href="https://github.com/HyeongminLEE/Tensorflow_Pix2Pix">Pix2Pix in Tensorflow by Hyeongmin Lee</a></li>
+<li><a href="https://github.com/taeoh-kim/Pytorch_DiscoGAN">DiscoGAN in Pytorch by Taeoh Kim</a></li>
+</ul>
+<p><br><br></p>
+<h3 id="1-pix2pix">1. Pix2Pix</h3>
+<br>
+<p>우선 본 논문의 저자는 Phillip Isola로서, UC Berkeley의 <a href="https://people.eecs.berkeley.edu/~efros/">Alexei A. Efros 교수</a>의 연구실 출신이다.</p>
+<center> <img src="/img/img1.PNG" style="width:600px" /></center>
+<p>해당 연구실의 이전 연구중에는 ECCV 2016에 나왔던 Colorful Image Colorization이라는 논문이 있는데, 위 그림과 같이 말 그대로 흑백 영상을 컬러 영상으로 바꾸는 것이다.</p>
+<p>이것을 CNN 기반의 여러 Trick을 통해서 접근했는데, 이것을 일반화 해 본다면, 컬러 영상은 누구나 쉽게 모을 수 있고, 이와 Pair를 이루는 흑백 영상은 간단히 만들 수 있으므로, Pair로 있는 Data를 모아서 CNN을 기반으로 학습시켜서 문제에 적용시켰다 라고 볼 수 있는데, 그렇다면 Pair로 되어있는 다른 Dataset을 이용해서 Image to Image Translation을 할 수 있지 않을까? 라는 질문이 연구의 출발점이 아닐까 싶다.</p>
+<center> <img src="/img/img2.PNG" style="width:600px" /></center>
+<p>여기서는 이것의 이름을 Pix2Pix로 이름붙였고, 위와 같이 라벨을 실제 영상으로 한다든지, 낮을 밤으로 한다든지, 위성 지도를 그래픽 지도로 만든다든지 등의 여러 Process가 가능하다는 것이다.</p>
+<p>그렇다면 처음 해볼 수 있는 Idea는 Colorization에서 했던 것과 같이, DB를 잔뜩 모으고, CNN을 통해서 학습을 시키고, 추가적인 성능을 얻기 위해서 여러가지 최적화를 하면 되지 않을까? 라는 것이고. 실제로 해 보면 결과는 아래 그림과 같게 된다.</p>
+<center> <img src="/img/img3.PNG" style="width:500px" /></center>
+<p>맨 오른쪽 열 (L1)이 단순 Network만 사용한 경우이다. 하지만 예상처럼 잘 되지는 않았는데, 실패한 이유는 무엇일까?</p>
+<p>그 전에 우선 이러한 Image to Image Translation을 할 때 일반적인 방법론을 먼저 살펴 볼 필요가 있다.</p>
+<p>예를 들면 위와 같이 Label을 실제 Image로 만든다고 했을 때. Label과 실제 Image의 Ground Truth가 Pair로 존재하게 되고, Input Label은 CNN Network를 통해 실제 Image를 만들어내려 한다.</p>
+<p>그렇다면 여기서 일반적으로 생각해 볼 수 있는 Loss Function은 다음과 같이 모든 Pixel의 Error를 Loss로 사용하는 것이다.</p>
+<p>$$ Loss =\sum _{ x \in EveryPixel }^{  }{ \left\Vert GT(x) - Pred(x) \right\Vert  }  $$</p>
+<p>결국에 CNN은 위 Loss를 기반으로 문제를 풀게 되는데, 문제는 저 합계 또는 평균이다. 각 픽셀별로 가장 완벽한 답을 찾으려고 하기보다는, 전체 픽셀의 관점에서의 Loss를 줄이려고 하기 때문에, 픽셀 값이 정확한 값을 추정하기보다는 안전한 값으로 대충 얼버무리고 넘어간다는 것이다.</p>
+<p>이것은 Network의 관점에서는 너무나도 당연한 선택이지만 사람이 봤을때는 Photo-realistic 하지 않다는 문제가 발생한다.</p>
+<p>GAN이 유행하기 시작한 이후 GAN이 가지고있는 가장 큰 특징은 VAE와 대비했을 때 극명해지는데, VAE에서는 말 그대로 data distribution을 찾아 내는 확률적 접근성이 짙은 방법이었기 때문에 원론적으로는 더 정확한 접근이라고 볼 수 있으나 마찬가지로 Image에 적용했을 경우 Loss Function이 생겨먹은 것이 그러하듯이 Photo-realistic과는 거리가 멀다.</p>
+<p>하지만 GAN은 실제 같은 Data를 만들어 내서 Discriminator를 통해서 학습이 되는 것에 초점을 맞추었고, 그리하여 VAE와는 접근 방법이 다르게 되고 결과가 VAE에 비해 확실한 선택을 하기에 Photo-realistic하게 매우 잘 나온다는 특징이 있다.</p>
+<p>결국 이 Idea를 Pix2Pix에 적용하게 되는데, CNN을 통한 Loss Function외에도, GAN Loss를 추가하게 되면 어느 정도 Photo-realistic한 Image를 만들어 내지 않을까 라는 것이다.</p>
+<p>기존의 GAN (또는 DCGAN)에서는 Noise Distribution으로 부터 Data Distribution을 뽑아내는 Learning을 하게 된다면, 여기서는 한 Image Domain (ex. Laebl Image)로부터 또 다른 Image Domain (ex. Synthetic Image)로부터의 Mapping Function을 Learning을 하게 되고, 여기서부터 Discriminator를 통해서 진짜인지 아닌지를 검사를 받게 되는 것이다.</p>
+<p>즉 엄밀히 말하면 Generative Adversarial Training에서 Generative보다는 Tranfer에 가깝고, 결국 Adversarial Training이 핵심 Idea라고 볼 수가 있게 된다.</p>
+<p>Pix2Pix의 Objective Function은 다음과 같다.</p>
+<p>$$ V(G, D) = \min _{ G }{ \max _{ D }{ { { \mathbb E_y }[log(D(y)]+ \mathbb E_x[log(1-D(G(x))]} + \mathbb E_{x, y}[{ \left\Vert y-G(x) \right\Vert  }_{ 1 }] }  }  $$</p>
+<p>여기서 y가 Target Domain의 Real Image이고, x가 Source Domain의 Real Image이다.</p>
+<p>첫 번째와 두 번째 항을 Adversarial Loss라고 하며 GAN에서 쓰던 Loss를 사용한 것이 특징이다.</p>
+<p>$$ \mathbb E_y [log(D(y)]+ \mathbb E_x[log(1-D(G(x))] $$</p>
+<p>즉 진짜 y는 진짜라고 하고, x로부터 Mapping된 y인 G(x)는 가짜라고 하는 것이 Pix2Pix의 Discriminator의 Loss가 된다. Generator는 반대로 G(x)는 진짜라고 하는 것이 Loss가 된다.</p>
+<p>마지막 항은 Reconstruction Loss로서, 기존의 CNN기반 학습 방법에서 사용하던 Loss이다.</p>
+<p>$$ \mathbb E_{x, y}[{ \left\Vert y-G(x) \right\Vert  }_{ 1 }] $$</p>
+<p>진짜 y와 x로부터 만들어진 G(x)의 차이를 Minimize하게 된다.</p>
+<p>아래는 논문에 있는 그림인데, 여기서 지도 사진을 Noise라고 보면 GAN과 동일하지만 대신 Discriminator에 들어갈 때 Pair로 들어간다는 점이 특징이다.</p>
+<center> <img src="/img/img4.PNG" style="width:500px" /></center>
+<p>이제는 여러가지 실험과 Network 구조 등을 살펴 볼 예정인데, 우선 Pix2Pix에서는 Generator Network에 U-Net을 사용했다고 한다.</p>
+<p>Pix2Pix가 직면하고 있는 문제를 보면, Colorization과 마찬가지로 입력과 출력의 Resolution이 동일하고, 어느 정도 Detail과 Shape를 유지하는 성질을 가지고 있기 때문에, 아래 그림과 같이 Encoder-decoder 구조를 사용하게 되면 정보의 손실이 발생하게 되는데, 이를 Skip-Connection을 이용해서 연결해 준 것이 U-Net 구조이다.</p>
+<center> <img src="/img/img4-2.PNG" style="width:300px" /></center>
+<p>다음은 Discriminator인데, PatchGAN이라는 것을 사용했다.</p>
+<p>PatchGAN이라고 해서 대단한 것은 아니고, 기존의 GAN에서 Discriminator의 역할은 Image 전체를 보고 진짜인지 가짜인지를 판별하게 되는데 이것을 Image의 Overlap되는 Patch 단위로 해보자는 것이다.</p>
+<p>그렇게 되면 Patch 단위로 Loss가 Back-propagate되어서 좀 더 Detail한 부분에서 Generator가 Feedback을 받지 않을까 싶은 것이다.</p>
+<p>실제 구현시에는 FCN의 Idea를 적용해서 Fully Convolutional로 마지막을 구성하게 되면 Single Real/Fake Score가 아닌 Real/Fake Score Map이 나오게 된다. 이것을 이와 동일한 Size의 Label (ex. Real이면 1, Fake면 0)과의 Loss를 정의해서 Optimize를 하면 된다.</p>
+<center> <img src="/img/img5.png" style="width:400px" /></center>
+<p>위 결과를 보면, Generator에서 Encoder-decoder구조보다 U-Net 구조가 어떠한 Shape와 해상도를 유지하는 면에서 좋은 결과를 보임을 알 수 있다.</p>
+<center> <img src="/img/img6.PNG" style="width:600px" /></center>
+<p>다음은 Discriminator에서 Patch 단위 판별을 하게 되면, 위와 같이 좀 더 Detail이 살아 나는 결과를 얻을 수 있다고 하지만, 계산량이 늘어나게 되는데, 논문에서는 70x70정도만으로도 충분하다고 보고 있다.</p>
+<center> <img src="/img/img7.PNG" style="width:500px" /></center>
+<p>위는 Colorization의 결과인데, 여기에는 없지만 Pix2Pix 구조는 일반화된 문제를 풀기 위한 구조이기 때문에 사실 Colorization만 하고 싶다면 Coloful Image Colorization 논문이 더 잘 되는 것을 확인할 수 있다. 이 논문에 대해서도 나중에 다룰 예정이다.</p>
+<center> <img src="/img/img8-1.PNG" style="width:400px" /></center>
+<center> <img src="/img/img8-2.PNG" style="width:400px" /></center>
+<center> <img src="/img/img8-3.PNG" style="width:400px" /></center>
+<p>위의 이미지들은 Pix2Pix의 여러 결과물들이다. 각각의 Traning Data에서 최대 3000장 정도가 사용되었으며, Architecture에서 Photo로 바꾸는 경우에는 400장밖에 사용하지 않았다. 또한, training 시 batch size를 1 또는 4로 작게 가져가고 4일때는 Batch Normalization을, 1일때는 Instance Normalization을 사용한다.</p>
+<p>Pix2Pix 코드를 보면서 조금 더 Network와 학습 과정을 살펴보도록 하자. 우선 아래 두 그림은 각각 Generator (U-Net)과 Discriminator (PatchGAN)을 표시한 것이다.</p>
+<center> <img src="/img/code1.PNG" style="width:600px" /></center>
+<center> <img src="/img/code2.PNG" style="width:600px" /></center>
+<p>Network부분은 코드 구현상으로 어렵지 않으므로 (network.py) 생략하고 Training 부분(pix2pix.py)을 살펴보면 다음과 같다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># ===================== Train D =====================#</span>
+discriminator<span style="color:#f92672">.</span>zero_grad()
+
+<span style="color:#75715e"># Forward</span>
+real_A <span style="color:#f92672">=</span> to_variable(input_A)
+fake_B <span style="color:#f92672">=</span> generator(real_A)
+real_B <span style="color:#f92672">=</span> to_variable(input_B)
+
+pred_fake <span style="color:#f92672">=</span> discriminator(real_A, fake_B)
+pred_real <span style="color:#f92672">=</span> discriminator(real_A, real_B)
+
+<span style="color:#75715e"># Loss (CriterionGAN: Cross Entropy)</span>
+loss_D_fake <span style="color:#f92672">=</span> GAN_Loss(pred_fake, False, criterionGAN) <span style="color:#75715e"># Fake-Fake Loss</span>
+loss_D_real <span style="color:#f92672">=</span> GAN_Loss(pred_real, True, criterionGAN) <span style="color:#75715e"># Real-Real Loss</span>
+loss_D <span style="color:#f92672">=</span> (loss_D_fake <span style="color:#f92672">+</span> loss_D_real) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.5</span>
+
+<span style="color:#75715e"># Optimize</span>
+loss_D<span style="color:#f92672">.</span>backward(retain_graph<span style="color:#f92672">=</span>True)
+d_optimizer<span style="color:#f92672">.</span>step()
+
+<span style="color:#75715e"># ===================== Train G =====================#</span>
+generator<span style="color:#f92672">.</span>zero_grad()
+
+<span style="color:#75715e"># Forward</span>
+pred_fake <span style="color:#f92672">=</span> discriminator(real_A, fake_B)
+
+<span style="color:#75715e"># Loss</span>
+loss_G_GAN <span style="color:#f92672">=</span> GAN_Loss(pred_fake, True, criterionGAN) <span style="color:#75715e"># Fake-Real Loss</span>
+loss_G_L1 <span style="color:#f92672">=</span> criterionL1(fake_B, real_B) <span style="color:#75715e"># Recon Loss</span>
+loss_G <span style="color:#f92672">=</span> loss_G_GAN <span style="color:#f92672">+</span> loss_G_L1 <span style="color:#f92672">*</span> args<span style="color:#f92672">.</span>lambda_A
+
+<span style="color:#75715e"># Optimize</span>
+loss_G<span style="color:#f92672">.</span>backward()
+g_optimizer<span style="color:#f92672">.</span>step()
+</code></pre></div><br>
+각 Training Iteration 안에서 Discriminator와 Generator가 번갈아 가면서 학습하고 각각 Input에 대한 Forward Pass, Loss 구하고 Optimize라는 단순한 구성으로 되어 있다.
+<p><br><br></p>
+<p><strong>Pix2Pix를 요약하자면 다음과 같다</strong></p>
+<ul>
+<li><strong>Image to Image Mapping Network에서 Photo-realistic을 추구하고 싶음</strong></li>
+<li><strong>그래서 GAN의 Adversarial Training을 도입</strong></li>
+<li><strong>U-Net과 PatchGAN등을 통해서 성능 최적화</strong></li>
+<li><strong>Training Data가 Pair로 존재해야 함 (그래서 CycleGAN, DiscoGAN이 나옴)</strong></li>
+</ul>
+<p><br><br></p>
+<h3 id="2-cyclegan">2. CycleGAN</h3>
+<br>
+<p>CycleGAN은 위 Pix2Pix를 발표한 연구실에서 이어서 나온 논문인데, 논문 제목이 Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks로서 핵심은 Unpaired에 있다.</p>
+<p>Pix2Pix처럼 Paired Dataset으로 학습을 하면 좋겠지만, 실제 세계에서는 이러한 경우는 거의 없고, CycleGAN에서 주로 다루고 있는 Style Transfer의 경우 (예를 들면 모네의 그림을 사진으로 변환)에는 당연히 Pair로 된 Data가 있을리 만무하다.</p>
+<p>따라서 본 논문에서는 Cycle Consistency라는 Idea로 이 문제를 해결하고자 하였다.</p>
+<p>그 전에 위 연구실에서 나온 논문 중 비슷한 방법론을 적용한 논문이 있었는데, 논문 제목은 Learning Dense Correspondence via 3D-guided Cycle Consistency라는 논문이다. 아래 그림을 통해 무엇을 했는지를 살펴 보자.</p>
+<center> <img src="/img/c1.PNG" style="width:400px" /></center>
+<p>위 그림에서 하고자 하는 것은 특징점 Matching인데, 노란색 자동차로부터 오른쪽의 흰색 자동차로 가는 Matching Flow를 찾는 것이다. 하지만 문제는 같은 Object가 아니라 단순히 Car라는 같은 Category일 뿐이기 때문에 사실은 어려운 문제가 되는데, 이것을 3D Model로 바꾸는 Transform과 3D Model 사이에서의 Transform, 변환된 3D Model에서 흰색 자동차로 가는 Transform을 노란색 자동차에서 흰색 자동차로 바로 가는 Transform과 비슷해지도록 학습하고, Test과정에서는 바로 노란색 자동차로부터 흰색 자동차를 Matching할 수 있게 만드는 Idea가 된다.</p>
+<p>결국은 어떠한 Mapping을 할 때, 그것의 의미 있는 Mapping이 되려면, 단순히 단방향성 Mapping이 아니라 정상적으로 돌아 오는 양방향적인 Mapping이 되야 하는 것이고 이렇게 되도록 학습을 유도해야 한다는 것이다.</p>
+<p>우리의 문제로 돌아가보면 우리가 결국 Pix2Pix를 넘어서 하고 싶은 것은 Paired Data가 없는 Image Translation인데, 이것을 양방향 Mapping으로 만들고, 원래대로 돌아오는 Cycle Consistency를 이용해서 구현해 보자 하는 것이다.</p>
+<p><strong>이러한 기본 Idea는 다음 Section에서 설명할 DiscoGAN과 완전히 일치하지만, 세세한 부분에서 차이가 존재하고, 우선은 CycleGAN의 경우에는 전체적인 형태는 유지하는 Style Transfer가 중점이다.</strong></p>
+<p>우선 CycleGAN의 구조를 가장 단순하게 보여 주는 논문의 아래 그림을 보도록 하자.</p>
+<center> <img src="/img/c2.PNG" style="width:300px" /></center>
+<p>여기서 X와 Y가 우리가 서로 연결하고자 하는 두 Domain의 Image인데, 여기서는 Image 하나가 아니라 해당 Domain의 다수의 Image Set라고 보는 것이 편할 것 같다.</p>
+<p>먼저 위 그림처럼 설계를 하면, X Domain에서 Y로 Mapping하는 G Function이 존재하고 이것이 진짜 Y 같으냐? 라는 것을 Y의 Discriminator를 통해서 검사를 받게 된다. 반대의 경우도 똑같다.</p>
+<p>이렇게 되면 결과가 어떻게 될지를 생각해 보면, X에서 Y로 Mapping할 경우 X의 성질을 유지하면서 Y로 Style만 바꾸는 것이 주 목적이 되는 것이 아니라, 그냥 Y Domain의 진짜 Image처럼만 보이면 되기 때문에 사실 별 의미 없는 Mapping이 되어버린다.</p>
+<p>예를 들어서, 아래 그림과 같이 사진을 Label로 바꾸도록 했을 경우, 위 그림과 같은 구조에서는 그냥 Label Domain의 일원처럼만 보이면 장땡이기 때문에 맨 오른쪽 열(GAN alone)과 같이 대충 변하기 쉬운 Label을 만들어 놓고 끝나버리게 된다. Input과 비교해 놓고 보면 괴리감이 있는 것을 확인할 수 있다.</p>
+<center> <img src="/img/c3.PNG" style="width:500px" /></center>
+<p>이 문제를 해결하고자 Cycle-Consistency 아이디어를 가져오면 아래 그림처럼,</p>
+<center> <img src="/img/c4.PNG" style="width:600px" /></center>
+<p>단순 Mapping이 아니라 다시 돌아오는 Mapping까지 고려해서, 그것이 원래대로 잘 돌아오도록 만드는 제약 조건을 걸어 주는 것이다. 이것을 반대의 Mapping에도 동일하게 적용해주면 된다.</p>
+<p>즉 Label에서 Image로 가는 Mapping 뿐만 아니라, <strong>Image에서 Label로 다시 돌아가는 Mapping</strong>도 정의해 주고, 이를 통해서 원래 Label로 돌아오게 만드는 것이다. 반대의 경우도 마찬가지이다.</p>
+<p><strong>이렇게 하는 이유는 해당하는 Y가 우리의 Dataset에 없기 때문에, Y로 갈 때는 Y Domain처럼 보이는지만 확인하고 실제 제약 조건은 다시 X로 돌아올 때 형태를 유지하게 만드는 것이다.</strong></p>
+<p>이것을 Loss Function을 통해서 보면 명확해지는데, X에서 Y로 가는 GAN Adversarial Loss에서, Cycle을 돌아서 다시 X로 돌아 오는 Loss를 추가해 주고,</p>
+<p>$$ Loss_{x \rightarrow y} = \mathbb E_y[log(D_y(y))] + \mathbb E_x[log(1-D_y(G(x)))] + \mathbb E_x[{\Vert F(G(x)) - x \Vert}_{1}]  $$</p>
+<p>여기서 G가 X에서 Y로 가는 Mapping이고, F는 Y에서 X로 가는 Mapping이다.</p>
+<p>이것을 Y에서 X로 가는 경우에도 똑같이 해 준 다음에,</p>
+<p>$$ Loss_{y \rightarrow x} = \mathbb E_x[log(D_x(x))] + \mathbb E_y[log(1-D_x(F(y)))] + \mathbb E_y[{\Vert G(F(y)) - y \Vert}_{1}]  $$</p>
+<p>이것을 더한 것을 전체 Loss로 정의해서 학습하고자 하는 것이다.</p>
+<p>$$ Loss_{cycleGAN} = Loss_{x \rightarrow y} + Loss_{y \rightarrow x} $$</p>
+<p>이렇게 하면 Network가 어떻게 대처할지를 생각해 보면, 다시 돌아와야 하기 때문에 형태를 크게 바꿀 수 없고, Adversarial Loss를 통해서 진짜 Y Domain처럼 보여야 하기 때문에 Style을 Y처럼 바꾸게 되기 때문에, 아래 그림과 같이 우리가 하고자 하는 Style Transfer 작업을 할 수 있게 된다.</p>
+<center> <img src="/img/c5.PNG" style="width:700px" /></center>
+<p>즉 모네의 그림에서 물체들의 큰 형태들은 남긴 채 (그래야 Cycle L1 Loss에 유리하다) Style을 Photo Domain처럼 보이도록 만들었고. 얼룩말을 말로, 여름을 겨울로 바꾸는 것 등이 가능해 지게 된다.</p>
+<p>이제 성능을 끌어올리기 위한 여러 Trick들과 단점 등을 분석하면 끝나게 된다.</p>
+<p>Network 구조는 Pix2Pix에서는 U-Net 구조를 사용했지만, 여기서는 좀 더 좋은 성능을 낸다고 알려진 Resnet구조를 사용했다. Resnet도 마찬가지로 Encoder-decoder 구조와 비슷하지만 residual connection이 존재하므로 정보를 크게 잃지 않아서 고해상도 처리에 좋다고 알려져 있다.</p>
+<p>그리고 GAN Loss에서 GAN Loss가 불안정하다는 것은 익히 알려져 있지만, 이것을 Network 구조로 해결하려 했던 DCGAN으로는 부족했는지, LSGAN을 사용해서 좀 더 안정성을 추구하였다. LSGAN은 Least Square GAN의 약자로서 다음과 같은 GAN Loss를 사용하는 것이다.</p>
+<p>$$ Loss_{x \rightarrow y} = \mathbb E_y[(D_y(y) - 1)^2] + \mathbb E_x[(D_y(G(x)))^2]  $$</p>
+<p>이것이 왜 좋은지를 간단하게 설명하면 기존 GAN Loss는 Cross Entropy의 형태를 띠고 있고, 이 경우 Vanishing Gradient 문제가 발생할 여지가 있어서 Generator까지 유의미한 Gradient Feedback이 전달되지 않는다고 한다.</p>
+<p>이것을 위와 같이 Label 0과 1을 향한 MSE Loss처럼 만들어 주면 Gradient가 더 잘 전달된다고 알려져 있다.</p>
+<p>Discriminator에서는 Pix2Pix와 마찬가지로 70x70 PatchGANs를 사용했다고 한다.</p>
+<p>그리고 Identity Loss라는 것을 추가했는데 (일부 Task에 한해서), 이것은 X에서 Y로 Transfer를 할 때 Loss에다가 Y에서 Y로 가는 Mapping Function의 Loss를 추가한 것이다.</p>
+<p>왜 이렇게 하는지에 대해서 생각해 보면, 어떻게 보면 진짜 Y Domain의 Image가 들어 왔을 경우에도 아무것도 하지 않아서 Y Domain의 특징을 유지하도록 만들면, X에서 Y로 가는 Mapping Function이 단순히 Transfer를 생각 없이 하는 것이 아니라 X의 형태를 좀 더 깊게 보게 된다는 것이다.</p>
+<p>즉, X일 때는 Y로 바꾸고 Y일때는 냅둬 라는 것을 배움으로서 Mapping의 특징을 좀 더 유의미하게 만들었다라고 해석하면 좋을 듯 하다. 아래 그림이 그 예인데,</p>
+<center> <img src="/img/c6.PNG" style="width:600px" /></center>
+<p>모네의 그림이 들어오면 일단 잘 바꾼다, 하지만 형태는 잘 유지한다 쳐도 색깔와 분위기를 바꿔버리는 문제가 발생하는 것을 막을 방법이 별로 없는데, Identity Loss를 추가하게 되면 모네 그림과 사진의 특성에 대한 학습을 통해서 분위기를 더 잘 유지하게 된다는 것이다.</p>
+<p>다음은 CycleGAN의 여러 결과물들이다. 그림을 사진처럼, 말을 얼룩말로, 여름을 겨울로, 사과를 오렌지로 바꿔 주며, 사진의 화질을 향상시켜주기도 한다.</p>
+<center> <img src="/img/c7-1.PNG" style="width:500px" /></center>
+<center> <img src="/img/c7-2.PNG" style="width:500px" /></center>
+<center> <img src="/img/c7-3.PNG" style="width:700px" /></center>
+<p>저자가 직접 언급한 CycleGAN의 단점으로는 우선 해상도가 크고 Network가 깊기 때문에 느리다, 아래 DiscoGAN과 비교할 경우 그 특징이 좀 더 두드러진다. 또한 Resnet 구조와 L1 Loss의 특징들 때문 아래 그림과 같이 여러 실패 Case가 존재하는데, 형태를 유지하면서 Style을 바꾸는 것은 잘 하지만, 형태 자체를 바꾸는 것은 어렵다고 한다. 이것은 다른 Network 구조를 사용하는 DiscoGAN을 보면 차이가 조금 더 명확해지게 된다.</p>
+<center> <img src="/img/c8.PNG" style="width:600px" /></center>
+<p><strong>CycleGAN을 요약하면 다음가 같다</strong></p>
+<ul>
+<li><strong>가장 큰 Contribution은 Pix2Pix에 Cycle Consistency를 도입하여 Unpaird Dataset에도 동작하게 만듦</strong></li>
+<li><strong>고해상도의 Style Transfer를 목적으로 ResNet, LSGAN, PatchGAN등을 사용</strong></li>
+<li><strong>제약 조건 때문에 형태를 크게 변화시키는 것은 어려움</strong></li>
+<li><strong>Network 규모가 커서 학습이 느림</strong></li>
+</ul>
+<p>CycleGAN의 코드에서 Detail을 제외하고 큰 틀은 DiscoGAN과 비슷하므로 DiscoGAN의 코드 설명으로 대체할 예정이다.</p>
+<p><br><br></p>
+<h3 id="3-discogan">3. DiscoGAN</h3>
+<br>
+<p>우선 DiscoGAN은 Arxiv에는 CycleGAN보다 조금 먼저 나왔다. 논문에 나와 있는 DiscoGAN 구조를 설명하는 그림을 먼저 보면 위에서 설명한 CycleGAN과 방법론적으로 완전히 동일한 방법론을 채택하고 있다는 것을 확인할 수 있다. 각각의 Domain에 해당하는 Discriminator가 존재하고 맨 위와 아래에 Cycle Loss에 해당하는 부분도 존재한다.</p>
+<center> <img src="/img/d1.PNG" style="width:600px" /></center>
+<p>이번에는 논문 맨 앞장의 결과물들을 먼저 보도록 하자</p>
+<center> <img src="/img/d2.PNG" style="width:600px" /></center>
+<p>그리고 논문에 나와 있는 추가적인 결과들이다.</p>
+<center> <img src="/img/d3.PNG" style="width:700px" /></center>
+<p>여기서 우리가 알 수 있는 것은 일단 CycleGAN과 Data 구성에서부터 차이가 있음을 보여 준다. 앞서 언급한 대로 CycleGAN이 Style Transfer에 초점을 맞추어 형태를 변형시키는 것이 어렵다면 DiscoGAN의 경우에는 형태에 변화가 큰 Dataset에 주로 실험을 진행한 것을 알 수 있다. (신발, 핸드백, 자동차, 얼굴 등)</p>
+<p>이것이 가능했던 이유는 DiscoGAN의 Network 구조를 먼저 살펴 보면 알 수 있는데, DiscoGAN에서의 각 Generator는 Resnet도 U-net도 아닌 단순한 Encoder-decoder 구조를 가져간다.</p>
+<p>이렇게 구조를 가져가면 정보의 손실이 발생하는데, 학습이 살짝 어려울 수 있고, 높은 해상도를 기대하긴 힘들 수 있어도 역설적으로 형태에 변환에서는 자유롭다.</p>
+<p>Discriminator에서도 마찬가지로 단순히 DCGAN의 구조를 가져와서 해상도 높이는 것에 큰 관심이 없음을 보여준다. 결과적으로 DiscoGAN에서 쓰이는 모든 Dataset Image는 64x64의 해상도를 가지고 있다.</p>
+<p>다음은 Loss Function인데, 사실 전체적인 Formulation은 완전히 동일한데 DiscoGAN은 Least Square GAN을 사용하지 않았고 Cycle Loss에 해당하는 Reconstruction Loss에 L2 Loss (MSE Loss)를 사용하였다는 것이 특징이다.</p>
+<p>$$ Loss_{x \rightarrow y} = \mathbb E_y[log(D_y(y))] + \mathbb E_x[log(1-D_y(G(x)))] + \mathbb E_x[{\Vert F(G(x)) - x \Vert}_{2}]  $$</p>
+<p>$$ Loss_{y \rightarrow x} = \mathbb E_x[log(D_x(x))] + \mathbb E_y[log(1-D_x(F(y)))] + \mathbb E_y[{\Vert G(F(y)) - y \Vert}_{2}]  $$</p>
+<p>$$ Loss_{cycleGAN} = Loss_{x \rightarrow y} + Loss_{y \rightarrow x} $$</p>
+<p>사실 이것이 전부이다. 개념적은 내용은 CycleGAN과 완전히 동일하다.</p>
+<p>DiscoGAN 논문에서는 비교 대상을 Forward Cycle 즉, Cycle이 X에서 Y에서 X로 단방향으로만 돌게 했을 경우와 비교하는데, 이 경우를 논문에서는 GAN with Reconstruction Loss라고 이름붙였다. 논문의 Figure 2를 보면 이 차이가 두드러진다.</p>
+<center> <img src="/img/d4.PNG" style="width:800px" /></center>
+<p>즉, CycleGAN이라고 치면 단방향 Cycle 제약 조건을 걸어줬을 경우와 비교를 하겠다는 것인데. 직관적으로 봤을 때도 X에서 Y로의 변환은 Adversarial Loss가 존재하고 Reconstruction Loss도 존재하지만, 그 반대의 변환은 사실 진짜 X Domain처럼 보여야 할 의무도 없고 (Y에서 X로 가는 Adversarial Loss가 없으므로) YXY에 해당하는 Reconstruction Loss도 없기 때문에 이 경우에는 그냥 잘 돌려만 놓으면 되기 때문에 의미론적인 Mapping Function을 기대할 수가 없게 된다.</p>
+<p>아래 Toy Experiment에서는 이 차이를 간단한 Data로 구성하였는데, 배경의 색깔은 Discriminator의 값을 의미하고, (a)에서 보듯이 중앙에 색깔이 뭉쳐 있는 점이 Source Domain Data가 되고 주변으로 뻗어 있는 검은 색의 X표시가 Target Domain Data가 된다.</p>
+<center> <img src="/img/d5.PNG" style="width:800px" /></center>
+<p>(b)는 GAN으로서, 여러 Source를 받는 Target이 존재하고, 받지도 못하는 Target도 존재하는 즉, 의미 없는 Mapping이 발생한다. 이 원인은 CycleGAN에서도 설명했듯이 그냥 진짜 Target Domain처럼만 보이면 되므로 아무 곳으로 가게 된다.</p>
+<p>그리고 (c)는 GAN with Reconstruction Loss로서, GAN에 비해서는 Source가 잘 찾아간 듯 보이지만 일부 Target Domain은 비어 있는 것을 볼 수 있다. 이는 양방향성을 고려하지 않기 때문이다.</p>
+<p>마지막으로 (d)가 DiscoGAN인데, 앞선 두 결과보다는 바람직한 결과를 보여 주는 것을 확인할 수 있다.</p>
+<p>DiscoGAN 코드에서의 Network 구조를 (network.py) 살펴보면 아래와 같은데, Pix2Pix보다도 단순한 것을 확인할 수 있다.</p>
+<center> <img src="/img/code3.PNG" style="width:600px" /></center>
+<center> <img src="/img/code4.PNG" style="width:600px" /></center>
+<p>Training코드는 (discogan.py) 아래와 같으며 가독성을 위해 약간 수정하였다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># ===================== Forward =====================#</span>
+A_to_B <span style="color:#f92672">=</span> generator_AtoB(A)
+B_to_A <span style="color:#f92672">=</span> generator_BtoA(B)
+
+A_to_B_to_A <span style="color:#f92672">=</span> generator_BtoA(A_to_B)
+B_to_A_to_B <span style="color:#f92672">=</span> generator_AtoB(B_to_A)
+
+A_real, A_real_features <span style="color:#f92672">=</span> discriminator_A(A)
+A_fake, A_fake_features <span style="color:#f92672">=</span> discriminator_A(B_to_A)
+
+B_real, B_real_features <span style="color:#f92672">=</span> discriminator_B(B)
+B_fake, B_fake_features <span style="color:#f92672">=</span> discriminator_B(A_to_B)
+
+<span style="color:#75715e"># ===================== Train D =====================#</span>
+<span style="color:#75715e"># Adversarial Loss (Real-Real and Fake-Fake Loss)</span>
+<span style="color:#75715e"># CriterionGAN: Cross Entropy</span>
+loss_D_A <span style="color:#f92672">=</span> (GAN_Loss(A_real, True, criterionGAN) <span style="color:#f92672">+</span> GAN_Loss(A_fake, False, criterionGAN)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.5</span>
+loss_D_B <span style="color:#f92672">=</span> (GAN_Loss(B_real, True, criterionGAN) <span style="color:#f92672">+</span> GAN_Loss(B_fake, False, criterionGAN)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.5</span>
+loss_D <span style="color:#f92672">=</span> loss_D_A <span style="color:#f92672">+</span> loss_D_B
+
+<span style="color:#75715e"># ===================== Train G =====================#</span>
+loss_G_Recon_A <span style="color:#f92672">=</span> criterionRecon(A_to_B_to_A, A) <span style="color:#75715e">#CriterionRecon: L2 Loss</span>
+loss_G_Recon_B <span style="color:#f92672">=</span> criterionRecon(B_to_A_to_B, B)
+
+<span style="color:#75715e"># Adversarial Loss (Fake-Real Loss)</span>
+loss_G_A <span style="color:#f92672">=</span> GAN_Loss(A_fake, True, criterionGAN)
+loss_G_B <span style="color:#f92672">=</span> GAN_Loss(B_fake, True, criterionGAN)
+
+<span style="color:#75715e"># Discriminator Feature Matching Loss (Hinge Loss)</span>
+loss_G_A_feature <span style="color:#f92672">=</span> Feature_Loss(A_real_features, A_fake_features, criterionFeature)
+loss_G_B_feature <span style="color:#f92672">=</span> Feature_Loss(B_real_features, B_fake_features, criterionFeature)
+
+loss_G_A_Total <span style="color:#f92672">=</span> (loss_G_A<span style="color:#f92672">*</span><span style="color:#ae81ff">0.1</span> <span style="color:#f92672">+</span> loss_G_A_feature<span style="color:#f92672">*</span><span style="color:#ae81ff">0.9</span>) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1.</span><span style="color:#f92672">-</span>rate) <span style="color:#f92672">+</span> loss_G_Recon_A <span style="color:#f92672">*</span> rate
+loss_G_B_Total <span style="color:#f92672">=</span> (loss_G_B<span style="color:#f92672">*</span><span style="color:#ae81ff">0.1</span> <span style="color:#f92672">+</span> loss_G_B_feature<span style="color:#f92672">*</span><span style="color:#ae81ff">0.9</span>) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1.</span><span style="color:#f92672">-</span>rate) <span style="color:#f92672">+</span> loss_G_Recon_B <span style="color:#f92672">*</span> rate
+
+loss_G <span style="color:#f92672">=</span> loss_G_A_Total <span style="color:#f92672">+</span> loss_G_B_Total
+
+<span style="color:#75715e"># ===================== Optimize =====================#</span>
+<span style="color:#66d9ef">if</span> iter <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+    loss_D<span style="color:#f92672">.</span>backward()
+    d_optimizer<span style="color:#f92672">.</span>step()
+<span style="color:#66d9ef">else</span>:
+    loss_G<span style="color:#f92672">.</span>backward()
+    g_optimizer<span style="color:#f92672">.</span>step()
+</code></pre></div><br>
+<p>Discriminator 학습은 너무나 자명하고, Generator 학습시에는 GAN Loss외에도 Feature Loss라는것을 추가하였다. Feature Loss는 Discriminator에서 최종 Real과 Fake로 판단하는 것도 좋지만, Mode Collapse등을 방지하기 위해서 중간 Feature가 실제 Image Domain 분포를 어느 정도 따라가야 한다는 ImprovedGAN 에서의 방법을 어느정도 반영하고 있는 것으로 보인다. ImprovedGAN에 대한 설명은 <a href="https://taeoh-kim.github.io/blog/generative-models-part-2-improvedganinfoganebgan/">이전 포스팅</a>을 참고하면 된다.</p>
+<p><strong>DiscoGAN을 요약하면 다음가 같다</strong></p>
+<ul>
+<li><strong>Unpaired Dataset과 Cycle Consistency는 CycleGAN과 완전히 동일</strong></li>
+<li><strong>Domain Transfer를 목적으로 간단한 Network 구조를 사용</strong></li>
+<li><strong>형태 변화가 자유롭지만 해상도는 낮음</strong></li>
+<li><strong>Network 규모가 단순해서 학습이 상대적으로 빠름</strong></li>
+</ul>
+<p><br><br></p>
+<h3 id="마치며">마치며..</h3>
+<br>
+<p>본 포스트에서는 GAN을 이용해서 Image to Image Translation 문제를 접근한 3가지 알고리즘에 대한 소개를 진행하였다.</p>
+<p>하지만 Colorization을 예로 볼 수 있듯이 특정 Task에서는 아직 최고의 성능을 내지는 못한다. 굉장히 General한 방법론이기 때문에 그런 듯 하다.</p>
+<p>또한 Style Transfer에서도 사실 요즘에는 Perceptual Loss에 기반한 방법들이 나오고 있는데 이것들의 성능이 더 좋은 것도 볼 수 있다. 이것에 대해서도 추가로 포스팅을 진행 할 예정이다.</p>
+<p>그리고 Image Translation을 하는 데 있어서 GAN을 사용해서 많은 결과물들을 보여주었지만, 결국에는 GAN에서 좀 더 좋은 Network 구조나 Loss가 나오게 된다면 성능이 더 발전하지 않을까 싶다.</p>
+<br>
+<br>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        </div><!-- Footer Start -->
+<footer id="footer" class="bg-one">
+    <div class="footer-bottom">
+        <h5>Copyright 2020. All rights reserved.</h5>
+        <h6>Taeoh Kim
+        <br>Design by themefisher.com
+        <br>Powered by Hugo
+        </h6>
+    </div>
+</footer>
+<!-- end footer -->
+
+
+<!-- Essential Scripts -->
+
+<!-- jQuery -->
+<script src="https://taeoh-kim.github.io/plugins/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://taeoh-kim.github.io/plugins/bootstrap/dist/js/popper.min.js"></script>
+<script src="https://taeoh-kim.github.io/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Parallax -->
+<script src="https://taeoh-kim.github.io/plugins/parallax/jquery.parallax-1.1.3.js"></script>
+<!-- lightbox -->
+<script src="https://taeoh-kim.github.io/plugins/lightbox2/dist/js/lightbox.min.js"></script>
+<!-- Slick Carousel -->
+<script src="https://taeoh-kim.github.io/plugins/slick-carousel/slick/slick.min.js"></script>
+<!-- Portfolio Filtering -->
+<script src="https://taeoh-kim.github.io/plugins/filterzr/jquery.filterizr.min.js"></script>
+<!-- Smooth Scroll js -->
+<script src="https://taeoh-kim.github.io/plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<!-- Main Script -->
+
+<script src="https://taeoh-kim.github.io/js/script.min.js"></script>
+</body>
+</html>

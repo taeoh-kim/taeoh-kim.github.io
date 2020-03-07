@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="앞선 포스트에 이어서, Sigmoid와 Softmax 함수의 의미에 대해서 설명합니다.">
+ <meta name="author" content="Themefisher">
+<meta name="generator" content="Hugo 0.66.0" />
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+
+<title>Bayes Theorem과 Sigmoid와 Softmax사이의 관계</title>
+
+<!-- Mobile Specific Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="https://taeoh-kim.github.io/images/favicon.ico" />
+
+<!-- Stylesheets -->
+<!-- Themefisher Icon font -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/themefisher-font/style.css">
+<!-- bootstrap.min css -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/bootstrap/dist/css/bootstrap.min.css">
+<!-- Lightbox.min css -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/lightbox2/dist/css/lightbox.min.css">
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/slick-carousel/slick/slick.css">
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/slick-carousel/slick/slick-theme.css">
+<!-- Main Stylesheet -->
+
+
+<link rel="stylesheet" href="https://taeoh-kim.github.io/css/style.min.css" media="screen">
+
+</head>
+<body id="body">
+        <!-- Start Preloader -->
+<div id="preloader">
+    <div class="preloader">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+    </div>
+</div>
+<!-- End Preloader --><!-- Fixed Navigation -->
+
+
+<section class="header navigation">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="https://taeoh-kim.github.io/">
+                        <img src="https://taeoh-kim.github.io/images/logo_taeoh.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="tf-ion-android-menu"></span>
+                    </button>
+                    
+                    <div id="drapeaux">
+                        
+                        
+                    </div>
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                    href="https://taeoh-kim.github.io/">Home</a>
+                            </li>
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/about">About</a>
+                            </li>
+                            
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/service">Publications</a>
+                            </li>
+                            
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/blog">Blog</a>
+                            </li>
+                            
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/contact">Contact</a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><div id="content">
+
+<section class="blog-single section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <img src="https://taeoh-kim.github.io/img/bayes.jpg" class="w-100 mb-3" alt="Post-Image">
+                <h2>Bayes Theorem과 Sigmoid와 Softmax사이의 관계</h2>
+                <div class="post-meta mb-5">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <span>By</span>
+                            Taeoh Kim
+                        </li>
+                        <li class="list-inline-item">
+                            <span>at</span>
+                            <span>September 22, 2017</span>
+                        </li>
+                    </ul>
+                </div>
+                <h2 id="computer-vision-and-machine-learning-study-post-5">Computer Vision and Machine Learning Study Post 5</h2>
+<h3 id="bayes-theorem과-sigmoid와-softmax사이의-관계">Bayes Theorem과 Sigmoid와 Softmax사이의 관계</h3>
+<p><br><br>
+Reference는 다음과 같습니다.</p>
+<ul>
+<li>Pattern Recognition and Machine Learning, Bishop, 2006</li>
+</ul>
+<p><br><br></p>
+<h3 id="1-bayes-theorem">1. Bayes Theorem</h3>
+<br>
+<p>$$ P(Y|X) = \frac{P(X|Y)P(Y)}{P(X)} $$</p>
+<p>위 식에서 좌변은 사후 확률 Posterior라고 부르고, P(X|Y)는 Likelihood 또는 Class-conditional Data Distribution, P(Y)는 Prior 그리고 P(X)는 Evidence라고 부른다.</p>
+<p>여기서 X를 Data, Y를 Classifiaction 문제의 Class로 본다면, Prior라는 것은 그 Class들의 분포가 어떻게 되어있는지에 대한 사전 지식을 의미하고, P(X|Y)는 각 Class에 속해 있는 Data의 확률 분포, 그리고 사후 확률 P(Y|X)는 새로운 데이타가 들어 왔을 경우 Y의 분포로, 이것으로 어떤 Class Y에 속할 지를 정할 수 있다.</p>
+<p>확률의 Marginal 특징에 의하여 분모인 Evidence는 다음과 같이 쓸 수 있다.</p>
+<p>$$ P(X) = \sum _{j}^{}{P(X|Y_j) P(Y_j)} $$</p>
+<p>이제 이것이 Classification 문제에서 어떻게 적용되는지를 살펴보도록 하자.</p>
+<p><br><br></p>
+<h3 id="2-logistic-function-2-class-classification">2. Logistic Function: 2-Class Classification</h3>
+<br>
+<p>우리가 분류를 하고자 할 때, 즉 새로운 데이터를 분류하고자 할 때 사후확률을 기준으로 삼는다, 즉,</p>
+<p>$$ X:Y_1 \text{  if  } P(Y_1 | X) &gt; P(Y_2 | X) $$
+$$ X:Y_2 \text{  if  } P(Y_1 | X) &lt; P(Y_2 | X) $$</p>
+<p>위와 같이 1과 2 두개의 Class가 있을 경우에 판별 기준인 Posterior를 전개해 보도록 하자,</p>
+<p>$$ P(Y_1 | X) = \frac{P(X | Y_1) P(Y_1)}{P(X)} $$
+$$ P(Y_2 | X) = \frac{P(X | Y_2) P(Y_2)}{P(X)} $$</p>
+<p>그런데 여기서, 분모는</p>
+<p>$$ P(X) = P(X | Y_1)P(Y_1) + P(X | Y_2)P(Y_2) $$</p>
+<p>이므로 두 식에서 모두 같다.</p>
+<p>즉 사후 확률은 Likelihood와 Prior의 곱이 결정한다는 것이다. 즉 각 Class별로 Likelihood와 Prior의 곱을 정의하는 것은 의미가 있다라는 것이 중요하다.</p>
+<p>여기서 우리는,</p>
+<p>$$ a_k = ln(P(X|Y_k)P(Y_k)) $$</p>
+<p>라는 것으로 Likelihood와 Prior의 곱을 정의하도록 하자.</p>
+<p>왜 Log(ln)을 붙이는 지는 Log Likelihood를 본다면 알 수 있듯이 다음과 같다.</p>
+<ul>
+<li>Log는 단조 증가 함수로서 극점을 변화시키지 않는다.</li>
+<li>각 시행이 독립일 경우 곱이 덧셈으로 바뀌어 계산이 용이해진다.</li>
+<li>확률분포가 Gaussian 등의 Exponential Family일 경우 계산이 용이해진다.</li>
+</ul>
+<p>그러면 Class 1의 사후 확률은 다음과 같이 된다.</p>
+<p>$$ P(Y_1 | X) = \frac{P(X | Y_1) P(Y_1)}{P(X | Y_1)P(Y_1) + P(X | Y_2)P(Y_2)} = \frac{e^{a_1}}{e^{a_1}+e^{a_2}} $$</p>
+<p>분모와 분자를 모두 분자로 나누면,</p>
+<p>$$ P(Y_1 | X) = \frac{1}{1+e^{a_2 - a_1}} $$</p>
+<p>여기서,</p>
+<p>$$ a_2 - a_1 = ln( \frac{P(X | Y_2)P(Y_2)}{P(X | Y_1)P(Y_1)} ) $$</p>
+<p>이고, 분모 분자를 뒤집어 새로 하나를 정의하자면 (이것을 Log Odds라고 부른다)</p>
+<p>$$ a = -(a_2 - a_1) = ln(\frac{P(X | Y_1)P(Y_1)}{P(X | Y_2)P(Y_2)}) $$</p>
+<p>그러면 다시 사후 확률로 돌아가면 다음과 같다.</p>
+<p>$$ P(Y_1 | X) = \frac{1}{1+e^{-a}} $$</p>
+<p>a에 대한 함수로서 이것을 그려 보면, Deep Learning 해본 사람은 누구나 다 아는 Sigmoid Function (정식 명칭: Logistic Function)이 된다.</p>
+<p>Naive Bayes를 예로 분류 문제를 풀어 본다면, 보통은 Likelihood는 Gaussian으로 정의한다.</p>
+<p>즉 한 Class 내에서의 확률 분포는 평균과 분산을 가지는 Gaussian정도가 적합하다는 것이다.</p>
+<p>그리고 Prior의 경우에는 두 가지 중 선택의 문제이므로 Bernoulli 분포로 두면 적당하다.</p>
+<p>Log Odds에 해당하는 부분에 이러한 분포들이 들어가게 되면 Naive Bayes 분류기가 되며 이것은 대표적인 Generative Model이다.</p>
+<p>만약 우리가, Likelihood와 Prior의 확률 분포를 구분하지 않고 바로 다음 함수,</p>
+<p>$$ P(Y|X) = \frac{1}{1+e^{-\theta x}} $$</p>
+<p>에 Fitting하는 문제로 바꾼다면 이것은 대표적인 Discriminative 문제인 Logistic Regression이 된다.</p>
+<p><br><br></p>
+<h3 id="3-softmax-function-k-class-classification">3. Softmax Function: K-Class Classification</h3>
+<br>
+<p>2-Class (Binary Class)가 아니고 K-Class 문제의 경우에는 어떻게 될까?</p>
+<p>우리는 사후 확률 분포로 판단을 하고, 그것은 Likelihood와 Prior의 곱에 비례했기에 다음을 정의하였다.</p>
+<p>$$ a_k = ln(P(X|Y_k)P(Y_k)) $$</p>
+<p>그래서 2-Class Classificaiton에서는 Class 1에 대한 사후 확률은 다음과 같이 되었었다.</p>
+<p>$$ P(Y_1 | X) = \frac{e^{a_1}}{e^{a_1}+e^{a_2}} $$</p>
+<p>K-Class의 경우 Class 1에 대한 사후 확률을 우선은 Bayes로 전개해 보면,</p>
+<p>$$ P(Y_1 | X) = \frac{P(X|Y_1)P(Y_1)}{P(X|Y_1)P(Y_1) + P(X|Y_2)P(Y_2) + &hellip; + P(X|Y_k)P(Y_k)} $$</p>
+<p>여기에 위에서 정의한 것을 대입하면,</p>
+<p>$$ P(Y_1 | X) = \frac{e^{a_1}}{e^{a_1}+e^{a_2}+&hellip;+e^{a_k}} = \frac{e^{a_1}}{\sum _{j}^{}{e^{a_j}}} $$</p>
+<p>결국 이것이 Deep Learning에서 많이 보던 Softmax Function이 된다.</p>
+<p>저 Normalization Term (분모) 때문에 한 Class의 확률이 다른 Class에 영향을 미치게 되며,</p>
+<p>Generative Model (Naive Bayes나 Gaussian Discriminant Analysis 등)에서는 Prior P(Y)에도 영향을 주게 된다.</p>
+<p>이것을 다음 함수,</p>
+<p>$$ P(Y|X) = \frac{e^{\theta_1 x}}{\sum _{j}^{}{e^{\theta_j x_j}}} $$</p>
+<p>Prior고려없이 바로 P(Y|X)를 Fitting하면 Discriminant Model인 이것은 Softmax Regression 된다.</p>
+<p><br><br></p>
+<h3 id="마치며">마치며..</h3>
+<br>
+<p>이번 포스트와 저번 포스트부터는 이론적인 측면을 좀 다루었는데, 사실 용어정리가 굉장히 중요한 것으로 느껴졌다. Maximum Likelihood부터, Random Variable, Posterior, Prior, Generative Model과 Discriminative Model, Parametric Method와 Non-Parametric Method, Non-Bayesian과 Bayesian Approach 등 결국 앞으로도 계속 하고자 하는 것은 기초 개념 정리를 단단히 하려는 것이다. 최종적으로는 매우 어려운 것을 접했을 때 그것을 쉽게 풀어내기 위함이다.</p>
+<p>머신러닝/딥러닝 등의 분야에서는 선형 대수, 확률 그리고 최적화 정도가 중요한 Background가 되는데 선형 대수까지 하기에는 역량이 부족하고 그나마 확률과 최적화에 대해서는 앞으로도 계속 다뤄보고 싶다. 실제 구현과 여러가지 분야에 대한 잡설과 함께 할 예정이다.</p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        </div><!-- Footer Start -->
+<footer id="footer" class="bg-one">
+    <div class="footer-bottom">
+        <h5>Copyright 2020. All rights reserved.</h5>
+        <h6>Taeoh Kim
+        <br>Design by themefisher.com
+        <br>Powered by Hugo
+        </h6>
+    </div>
+</footer>
+<!-- end footer -->
+
+
+<!-- Essential Scripts -->
+
+<!-- jQuery -->
+<script src="https://taeoh-kim.github.io/plugins/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://taeoh-kim.github.io/plugins/bootstrap/dist/js/popper.min.js"></script>
+<script src="https://taeoh-kim.github.io/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Parallax -->
+<script src="https://taeoh-kim.github.io/plugins/parallax/jquery.parallax-1.1.3.js"></script>
+<!-- lightbox -->
+<script src="https://taeoh-kim.github.io/plugins/lightbox2/dist/js/lightbox.min.js"></script>
+<!-- Slick Carousel -->
+<script src="https://taeoh-kim.github.io/plugins/slick-carousel/slick/slick.min.js"></script>
+<!-- Portfolio Filtering -->
+<script src="https://taeoh-kim.github.io/plugins/filterzr/jquery.filterizr.min.js"></script>
+<!-- Smooth Scroll js -->
+<script src="https://taeoh-kim.github.io/plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<!-- Main Script -->
+
+<script src="https://taeoh-kim.github.io/js/script.min.js"></script>
+</body>
+</html>

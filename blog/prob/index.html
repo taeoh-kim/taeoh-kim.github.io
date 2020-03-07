@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="This is meta description">
+ <meta name="author" content="Themefisher">
+<meta name="generator" content="Hugo 0.66.0" />
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+
+<title>머신러닝에서의 확률 분포, 랜덤 변수 그리고 Maximum Likelihood</title>
+
+<!-- Mobile Specific Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="https://taeoh-kim.github.io/images/favicon.ico" />
+
+<!-- Stylesheets -->
+<!-- Themefisher Icon font -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/themefisher-font/style.css">
+<!-- bootstrap.min css -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/bootstrap/dist/css/bootstrap.min.css">
+<!-- Lightbox.min css -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/lightbox2/dist/css/lightbox.min.css">
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/slick-carousel/slick/slick.css">
+<link rel="stylesheet" href="https://taeoh-kim.github.io/plugins/slick-carousel/slick/slick-theme.css">
+<!-- Main Stylesheet -->
+
+
+<link rel="stylesheet" href="https://taeoh-kim.github.io/css/style.min.css" media="screen">
+
+</head>
+<body id="body">
+        <!-- Start Preloader -->
+<div id="preloader">
+    <div class="preloader">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+    </div>
+</div>
+<!-- End Preloader --><!-- Fixed Navigation -->
+
+
+<section class="header navigation">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="https://taeoh-kim.github.io/">
+                        <img src="https://taeoh-kim.github.io/images/logo_taeoh.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="tf-ion-android-menu"></span>
+                    </button>
+                    
+                    <div id="drapeaux">
+                        
+                        
+                    </div>
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                    href="https://taeoh-kim.github.io/">Home</a>
+                            </li>
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/about">About</a>
+                            </li>
+                            
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/service">Publications</a>
+                            </li>
+                            
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/blog">Blog</a>
+                            </li>
+                            
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://taeoh-kim.github.io/contact">Contact</a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><div id="content">
+
+<section class="blog-single section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <img src="https://taeoh-kim.github.io/img/prob_title.png" class="w-100 mb-3" alt="Post-Image">
+                <h2>머신러닝에서의 확률 분포, 랜덤 변수 그리고 Maximum Likelihood</h2>
+                <div class="post-meta mb-5">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <span>By</span>
+                            Taeoh Kim
+                        </li>
+                        <li class="list-inline-item">
+                            <span>at</span>
+                            <span>September 20, 2017</span>
+                        </li>
+                    </ul>
+                </div>
+                <h2 id="computer-vision-and-machine-learning-study-post-4">Computer Vision and Machine Learning Study Post 4</h2>
+<h3 id="머신러닝에서의-확률-분포-랜덤-변수-그리고-maximum-likelihood">머신러닝에서의 확률 분포, 랜덤 변수 그리고 Maximum Likelihood</h3>
+<p><br><br>
+Reference는 다음과 같습니다.</p>
+<ul>
+<li>Pattern Recognition and Machine Learning, Bishop, 2006</li>
+<li><a href="https://aai.kaist.ac.kr">https://aai.kaist.ac.kr</a></li>
+</ul>
+<p><br><br></p>
+<h3 id="1-우리는-왜-확률을-배우는가">1. 우리는 왜 확률을 배우는가?</h3>
+<br>
+<p>머신 러닝 정의는, 관측된 Data(=Training Sample)로부터 Model을 설계하는 것이다.</p>
+<p>확률적 개념이 들어간다면, 관측된 Data는 진짜 Data가 아니라 진짜 Data로부터 Random하게 Sampling된 Data일 뿐이다. 진짜 Data는 무한하며, 연속적이다. 진짜 Data가 관측된 Data로 오기 위해서는 Sampling이 필요하다. 즉, 관측된 Data는 임의의 확률 분포(=진짜 Data 분포)에서 Sampling 된 것이라고 가정한다. 이것이 우리가 확률을 배우는 이유이다.</p>
+<center> <img src="/img/p1.png" style="width:600px" /></center>
+<br>
+<p>그리고 많은 알고리즘에서 확률 모델을 사용한다.</p>
+<p>Deep Learning (Cross Entropy), Naive Bayes, MRF, CRF, Word2Vec, Generative Models (HMM, VAE, GAN), Bayesian Models (Markov Chain Monte Carlo, Gaussian Process) 등이 그 예시이다.</p>
+<p>어떠한 확률 분포가 있을지 생각을 해보면,</p>
+<p>데이터 자체의 분포 (Regression, Clustering 등의 문제)</p>
+<p>$$ P(x) $$</p>
+<p>Class에 속해 있는 데이터의 분포, 이것을 뒤에도 나오지만 Likelihood라고 부른다.</p>
+<p>$$ P(x | c) $$</p>
+<p>그리고 사후 분포 (Posterior)는 데이터가 들어왔을 때의 Class에 Mapping되는 확률 분포이다.</p>
+<p>$$ P(c | x) $$</p>
+<p>그리고 어떤 Class가 어떻게 있을 지를 결정하는 것은 우리의 사전 지식 (Prior)이 된다.</p>
+<p>$$ P({c}) $$</p>
+<p>머신 러닝에는 크게 2가지로 분류를 할 수 있는데 (엄밀하게는 아니지만 우선은), Generative Model은 데이터의 분포를 먼저 추정한 후 Posterior를 통해 결과를 추정하며, Discriminative Model은 직접적으로 데이터로부터 Posterior
+를 추정한다.</p>
+<p>Generative Model의 또다른 특징은 Data 분포를 통해 새로운 Data를 확률분포로부터 Random Sampling 할 수 있다는 특징이 존재한다.</p>
+<p><br><br></p>
+<h3 id="2-확률-분포와-random-variable-그리고-bernoulli-분포">2. 확률 분포와 Random Variable 그리고 Bernoulli 분포</h3>
+<br>
+<p>우선은 우리는 진짜 Data의 분포</p>
+<p>$$ P(x), P({c}), P(x, c) $$</p>
+<p>이든, 우리가 알려는 Posterior 분포</p>
+<p>$$ P(c | x) $$</p>
+<p>이든 간에 그 정체를 알아내야 하는 것이 목적이다.</p>
+<p>이러한 확률 분포들을 모두 유명한 분포들로 가정해 두고, 우리가 할 일은, 확률 분포의 Parameter를 구하는 것이다.</p>
+<p>확률 분포가 직관적이지 않다면, 함수라고 생각해 보자. 단 함수의 x값이 있고, 그것에 따른 함수값 f(x)는 확률이다.</p>
+<p>x는 입력값이자, 우리의 관심사이며, 랜덤 변수 Random Variable이라고도 부른다.</p>
+<p>기억하자. 랜덤 변수는 확률 분포에서의 관심사, Input 값, 질문 값이다.</p>
+<p>동전 던지기를 예로 들어보자, 여기서의 우리의 관심사는 앞면이냐 뒷면이냐 이다. 이것이 Random Variable x = {0, 1}인 것이다.</p>
+<p>왜 x = {0, 1}이 Random Variable이냐면 우리의 질문 값이 P(x=0)? 또는 P(x=1)이기 때문이다.</p>
+<p>그것의 함수값에 해당하는 f(x)는 확률일 것이다.</p>
+<p>아무튼 동전의 앞면 또는 뒷면이 나올 확률을 알고 싶지만 모르기에,
+여기서는 그 확률을 이 확률 분포의 Unknown Parameter로 정의한다. 이것이 바로 Bernoulli Distribution이다. Bernoulli 분포는 1회 시행에 대한 분포임을 명심하자.</p>
+<p>Bernoulli 분포의 Parameter는 몇 개일까?</p>
+<p>앞면과 뒷면 각각의 확률이니까 2개? 아니다, 확률의 합은 1이므로, 앞면(혹은 뒷면)일 경우의 확률만 Parameter로 두면 된다.</p>
+<p>수식으로는 다음과 같다.</p>
+<p>$$ p(x|{\mu}) = {\mu}^{x} (1-\mu)^{1-x} $$</p>
+<p>Random Variable x = {0, 1}이었음을 기억하자. 대입해 보면 명확해 진다.</p>
+<p>우리가 해야 할 일은? Parameter μ를 알아내야 한다는 것이다. 무엇으로부터? 주어진 Data로부터.</p>
+<p>그러면 어떻게 해야 할까? 만약 우리에게 관측된 Data가 앞면 2번, 뒷면 2번이라고 가정해 보자. 그렇다면, 앞면이 나올 확률을 의미하는 μ는 무엇이 되어야 할까? 1/2이다, 이것은 우리의 직관에 의한 답변이다.</p>
+<p>그렇다면 수학적으로 풀어 보면 다음과 같다.</p>
+<p>확률 즉, μ가 얼마일 때 관측된 Data = {앞2, 뒷2}가 가장 잘 설명될까?</p>
+<p>즉 P(앞2뒷2 |  μ)가 어떻게 될까? 라는 질문을 던져 보자.</p>
+<p>각 시행은 독립이므로 위 수식은 다음과 같아진다.</p>
+<p>$$ p(앞2뒷2 | {\mu}) = {\mu}^{2} (1-\mu)^{2} $$</p>
+<p>얘를 μ 에 대해서 한번 그려 보자.</p>
+<center> <img src="/img/p2.png" style="width:600px" /></center>
+<br>
+<p>이것으로 우리가 알 수 있는 것은, 관측된 Data를 가장 잘 설명할 수 있는(=그 확률을 최대로 만드는) μ를 선택하면 된다는 것이고, 이것은 우리의 직관과 일치한다는 것이다.</p>
+<p>여기서 관측된 Data가 나올 확률을 Likelihood라고 하고, 이 방법을 Maximum Likelihood Estimation, 줄여서 MLE라고 한다. 즉 MLE는</p>
+<p>$$ \mu = arg \max_{\mu}{P_{Bernoulli}(Observation | \mu)} $$</p>
+<p>가 되며, 일반적인 경우로 가정하면, (1회 시행에 대한 분포이지만, 주어진 Data는 N 번이므로)</p>
+<p>$$ Likelihood = P(x_1, x_2, &hellip; , x_n | \mu) = \prod _{n=1}^{N}{P(x_n | \mu)} = \prod _{n=1}^{N}{{\mu}^{x_n} (1-\mu)^{1-x_n}} $$</p>
+<p>이것을 최대화 하기 위해서는 미분해서 0이 되는 값을 찾아야 하는데, 매우 불편하기에 보통은 Log를 취하며 이것을 Log Likelihood라고 한다.</p>
+<p>$$ LogLikelihood = log(\mu)\sum{x_n} + log(1-\mu)\sum{(1-x_n)} $$</p>
+<p>μ 에 대해서 미분하면,</p>
+<p>$$ \frac{\sum{x_n}}{\mu} - \frac{\sum{1-x_n}}{1-\mu} = 0 $$</p>
+<p>즉 우리가 원하는 μ의 MLE Solution은</p>
+<p>$$ \mu = \frac{1}{N} \sum{x_n} $$</p>
+<p>즉, Sample에서 전체 중 앞면이 나온 횟수이다. 즉 Sample 기반의 Relative Frequency를 전체 Data의 확률 값으로 가정하겠다는 의미가 된다.</p>
+<p><br><br></p>
+<h3 id="3-binomial-분포-동전을-몇-번-던질까">3. Binomial 분포: 동전을 몇 번 던질까?</h3>
+<br>
+<p>Bernoulli 분포에서는 동전 던지기에서 (일반화하면, 결과가 2개인 Model) 앞면이나 뒷면이 나올 확률을 의미한다. 즉 Random Variable (Input으로 생각하면 편하다)은 앞면 아니면 뒷면이었다. 그리고 Parameter는 앞면이 나올 확률이었다 (뒷면이 나올 확률은 자동으로 정해진다).</p>
+<p>Binomial 분포는, 마찬가지로 동전 던지기에서 (결과가 2개인 Model) “앞면”이 나올 횟수의 확률이다. 즉, 동전을 10번 던졌는데 앞면이 3번 나올 확률은? 아니면 5번 나올 확률은? 에 대한 내용이다. 그렇다면 Random Variable은? 확률분포의 Input에 해당하므로 “앞면이 나올 횟수”를 의미하며, Parameter는 “앞면이 나올 확률”과 “총 던진 횟수”가 된다.</p>
+<p>$$ P(x | \mu, N) = \left( \begin{matrix} N \\ x \end{matrix} \right) {\mu}^x (1-\mu)^{N-x} $$</p>
+<p>주어진 Data로부터 알아야 하는 Parameter는 마찬가지로 μ로서, MLE를 통해 구할 수 있다. 하지만 직관적으로 알 수 있듯이, 모양이 Bernoulli와 동일하게 된다.</p>
+<p>Binomial 분포에서 N=1로 두면, Bernoulli 분포가 된다.</p>
+<p><br><br></p>
+<h3 id="4-multiple-bernoulli-분포-category-분포-주사위-던지기">4. Multiple-Bernoulli 분포 (Category 분포): 주사위 던지기</h3>
+<br>
+<p>Multiple-Bernoulli 분포는 결과가 0 또는 1이 아닌 일반화된 경우 (Discrete) 예를 들면, 주사위 던지기, 주사위의 각 Component(1부터 6) 들이 나올 확률에 대한 분포이다.</p>
+<p>X축 = Input = Random Variable = {1, 2, 3, 4, 5, 6} 하지만 One-hot Vector로 쓴다. 즉, 1은</p>
+<p>$$ [\begin{matrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{matrix}] $$</p>
+<p>2는</p>
+<p>$$ [\begin{matrix} 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{matrix}] $$</p>
+<p>이런 식으로 정의한다.</p>
+<p>여기서 Parameter는 주사위 6개의 각각 면이 나올 확률을 의미하는 벡터이다.</p>
+<p>Multiple-Bernoulli 분포는 다음과 같다.</p>
+<p>$$ P(x_1, x_2, &hellip; x_k | \mu_1, \mu_2, &hellip;, \mu_k) = {\mu_1}^{x_1} {\mu_2}^{x_2} &hellip; {\mu_k}^{x_k} $$</p>
+<p>여기서</p>
+<p>$$ x_k $$</p>
+<p>는 우리가 위에서 One-hot Vector로 쓰기로 했으므로 0 또는 1의 값을 가진다.</p>
+<p>예를 들면 k=6인 주사위에서,</p>
+<p>$$ P(x=1) $$</p>
+<p>를 구하고 싶다면,</p>
+<p>$$ P([\begin{matrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{matrix}] | \mu_1, \mu_2, \mu_3, \mu_4, \mu_5, \mu_6) = \mu_1 $$</p>
+<p>그리고</p>
+<p>$$ P(x=4) $$</p>
+<p>를 구하고 싶다면,</p>
+<p>$$ P([\begin{matrix} 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \end{matrix}] | \mu_1, \mu_2, \mu_3, \mu_4, \mu_5, \mu_6) = \mu_4 $$</p>
+<p>Bernoulli와 Multiple Bernoulli 분포는 1회 시행에 대한 확률분포임을 명심하자,</p>
+<p>마지막으로, Parameter를 MLE를 통해 구해 보도록 하자, (주사위를 예로)</p>
+<p>Likelihood는 다음과 같은데, 혹시 헷갈릴까봐 언급하면, Bernoulli는 1회 시행에 대한 확률분포이지만. 그것의 Parameter를 구할 때에는 여러 Sample로부터 추정하는 것이다.</p>
+<p>$$ Likelihood = P(x_1, x_2, &hellip;, x_n | \mu) = \prod _{n=1}^{N}{ \prod _{k=1}^{6}{ {\mu_k}^{x_{nk}} } } $$</p>
+<p>Log Likelihood는</p>
+<p>$$ LogLikelihood = \sum _{n=1}^{N}{ \sum _{k=1}^{6}{x_{nk} log(\mu_k)} } $$</p>
+<p>여기에서, 아래 수식은 k번째 class가 몇 번 등장했는지를 의미한다. x_nk가 0 또는 1의 One-hot Vector 이므로, N 축으로 다 더하면 해당 Class의 횟수가 되는 것이다.</p>
+<p>$$ \sum _{n=1}^{N}{x_{nk}} = n_k $$</p>
+<p>이것으로 대입하여 Parameter를 구해 본다면,</p>
+<p>$$ LogLikelihood = \sum _{k=1}^{6}{n_k log(\mu_k)} $$</p>
+<p>여기서, 제약 조건이 추가된다.</p>
+<p>$$ \sum _{k=1}^{6}{\mu_k} = 1 $$</p>
+<p>따라서 라그랑지안으로 두고,</p>
+<p>$$ L = \sum _{k=1}^{6}{n_k log(\mu_k)} + \lambda (\sum _{k=1}^{6}{\mu_k} - 1) $$</p>
+<p>미분하면,</p>
+<p>$$ \frac{n_k}{\mu_k} + \lambda = 0 $$</p>
+<p>식을 정리하면, 총 던진 횟수 대비 해당 Class가 나온 횟수가 해당 Class의 확률이 된다.</p>
+<p>$$ \mu_k = \frac{n_k}{\sum _{k=1}^{6}{n_k}} = \frac{n_k}{N} $$</p>
+<p>Multiple-Bernoulli 분포에서 K (Category) = 1로 두면 Bernoulli 분포가 된다.</p>
+<p><br><br></p>
+<h3 id="5-multinomial-분포-주사위-각-숫자가-몇-번-나올까">5. Multinomial 분포: 주사위 각 숫자가 몇 번 나올까?</h3>
+<br>
+<p>Multinomial 분포는 Binomial 분포에서 K Class로 일반화 한 것이고, Multiple-Bernoulli 분포에서 1회 해당 확률이 아닌, 각 Class의 횟수에 대한 확률분포이다.</p>
+<p>즉 Random Variable이 각 Class의 발생횟수가 된다. (=Input 이자 관심사.)</p>
+<p>Parameter는 Multiple-Bernoulli와 동일하게 각 Class의 확률이다.</p>
+<p>확률분포의 수식은 다음과 같다.</p>
+<p>$$ P(x_1, x_2, &hellip; x_k | \mu_1, \mu_2, &hellip;, \mu_k, N) = \left( \begin{matrix} N \\ x_1 &amp; x_2 &amp; &hellip; &amp; x_k \end{matrix} \right) {\mu_1}^{x_1} {\mu_2}^{x_2} &hellip; {\mu_k}^{x_k} $$</p>
+<p>MLE를 해보면, Binomial과 마찬가지로 Multiple-Bernoulli와 동일하게 된다.</p>
+<p>정리해보면, 4가지 확률 분포 사이의 관계는 다음과 같게 된다.</p>
+<center> <img src="/img/p3.png" style="width:600px" /></center>
+<p>수식적으로 보면, 아래처럼 볼 수도 있다.</p>
+<center> <img src="/img/p4.png" style="width:600px" /></center>
+<p><br><br></p>
+<h3 id="6-gaussian-분포-continuous-data-fitting">6. Gaussian 분포: Continuous Data Fitting</h3>
+<br>
+<p>Gaussian 분포는 위의 4가지 분포와 다르게 연속적인 분포이다.</p>
+<p>즉 관측된 Data로부터 진짜 Data의 무한하고 연속적인 분포를 추정해보는 과정이다.</p>
+<p>Gaussian의 여러가지 흥미로운 특징에 대해서는 나중에 따로 다루기로 하고, 우선은 분포의 특징과 Parameter Estimation만 살펴 볼 예정이다.</p>
+<p>여기서는 Multi-Dimensional Gaussian으로 바로 들어간다. (Multi-variate Gaussian)</p>
+<p>분포는 다음과 같다.</p>
+<p>$$ N(x | \mu, \Sigma) = det(2 \pi \Sigma)^{- \frac{1}{2}} exp(- \frac{1}{2} (x-\mu)^T \Sigma (x-\mu)) $$</p>
+<p>우선 헷갈리지 않도록 정하고 들어가야 할 것은 Vector와 Matrix의 Dimension인데,</p>
+<p>$$ x = [x_1, x_2, &hellip; x_N]^T $$</p>
+<p>$$ \mu = [\mu_1, \mu_2, &hellip;, \mu_N]^T $$</p>
+<p>$$ \Sigma = {\Re}^{N \times N} $$</p>
+<p>이고 N은 Dimension을 의미한다. μ는 각 Dimension의 평균을 의미하고, Covariance Matrix는 1-D일때의 Variance (퍼진 정도)를 각 Dimension 및 Dimension 사이의 Correlation을 고려하여 만든 Matrix이다.</p>
+<center> <img src="/img/p5.png" style="width:600px" /></center>
+<p>예를 들어 2-D의 경우 위와 같으며, (1, 1)과 (2, 2)의 값들이 각 Dimension의 Variance라고 보면 된다. 이 값이 0이면 퍼지지 않고 (2번째 그래프, 3번째 그래프의 y축), 1이면 적당히 퍼지며, 5가 되면 해당 축으로 많이 퍼진다 (5번째 그래프의 x축, 6번째 그래프의 y축)</p>
+<p>(1, 2)와 (2, 1)의 값은 Symmetric으로 완전히 같으며, Correlation을 의미한다. 즉 -1에서 1 사이의 값을 가지며, 1에 가까울수록 y=x에 가까워지고, -1에 가까울수록 y=-x에 가까워진다. 이것이 0이라면 아무런 연관성을 띄지 않는다 (4번째, 5번째, 6번째 그림)</p>
+<p>Gaussian Distribution의 Parameter는 μ와 ∑ 2가지로서, 주어진 Data를 이용해서 Maximum Likelihood Estimation을 이용해서 구할 수 있다.</p>
+<p>결론적으로 다음과 같이 된다.</p>
+<p>$$ \mu = \frac{\sum _{k=1}^{N}{x_k}}{N} $$</p>
+<p>$$ \Sigma = \frac{1}{N} \sum _{k=1}^{N}{(x_k - \mu)^T (x_k - \mu)} $$</p>
+<p>즉 각각 Sample Mean과 Sample Covariance를 의미하게 된다.</p>
+<p><br><br></p>
+<h3 id="7-머신-러닝에서-확률분포들이-갖는-의미-그리고-maximum-likelihood">7. 머신 러닝에서 확률분포들이 갖는 의미 그리고 Maximum Likelihood</h3>
+<br>
+<p>이제 확률 분포에서 벗어나서 머신 러닝의 상황을 가정해 보자. 맨 처음에 언급하였듯이, 머신 러닝 정의는, 관측된 Data(=Training Sample)로부터 Model을 설계하는 것이다. 여기서의 Model이 바로 확률 분포가 된다.</p>
+<p>Maximum Likelihood를 잘 기억해 보면, 확률 분포에서 어떠한 Parameter일 때, Data x가 가장 잘 설명 될까? 였다.</p>
+<p>아래 그림에서는 P(x|c ; θ)에서의 θ가, Given Class c일 때, x를 설명하는지에 대한 Parameter가 된다.</p>
+<center> <img src="/img/p6.png" style="width:600px" /></center>
+<p>결국 해야하는 것은 “주어진 Data를 보고” 최적의 θ를 찾아 내야 하는 것이다. 이것이 Maximum Likelihood 관점이며 그 유명한 Deep Learning의 학습법이다. 미분=0 값을 찾기가 어려우므로 Gradient Descent로 하는 것이다.</p>
+<p>물론 Prior P( c )를 고려해서 최적의 Parameter를 찾는 Maximum a Posterior 방법도 있겠지만, 대부분의 경우 Likelihood를 고려하면 잘 해결이 된다.</p>
+<p>Bayes Rule에 의해서</p>
+<p>$$ P(c|x) \propto P(x|c) P({c}) $$</p>
+<p>이므로 결국에는 사후 확률, Posterior, P(c|x)에서 새로운 Test Data X가 들어왔을 경우, 어떤 Class에 들어갈 확률이 가장 높을 지에 따라서 Classification이 이루어 지게 되는 것이다.</p>
+<p>결국 모든 Machine Learning은 확률 모델의 파라미터를 찾는 것으로 귀결될 수 있고 여기에는 대부분 Maximum Likelihood 방법을 사용한다. 물론 파라미터를 추정하지 않고 답을 찾는 Non-parametric 방법들도 존재한다.</p>
+<p>또한 파라미터 역시 Random하다는 Bayesian View의 Approach도 존재한다.</p>
+<p>좀더 자세한 내용은 Bishop의 Pattern Recognition and Machine Learning 책을 참고하고. 앞으로도 계속 포스팅 할 예정이다.</p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        </div><!-- Footer Start -->
+<footer id="footer" class="bg-one">
+    <div class="footer-bottom">
+        <h5>Copyright 2020. All rights reserved.</h5>
+        <h6>Taeoh Kim
+        <br>Design by themefisher.com
+        <br>Powered by Hugo
+        </h6>
+    </div>
+</footer>
+<!-- end footer -->
+
+
+<!-- Essential Scripts -->
+
+<!-- jQuery -->
+<script src="https://taeoh-kim.github.io/plugins/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://taeoh-kim.github.io/plugins/bootstrap/dist/js/popper.min.js"></script>
+<script src="https://taeoh-kim.github.io/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Parallax -->
+<script src="https://taeoh-kim.github.io/plugins/parallax/jquery.parallax-1.1.3.js"></script>
+<!-- lightbox -->
+<script src="https://taeoh-kim.github.io/plugins/lightbox2/dist/js/lightbox.min.js"></script>
+<!-- Slick Carousel -->
+<script src="https://taeoh-kim.github.io/plugins/slick-carousel/slick/slick.min.js"></script>
+<!-- Portfolio Filtering -->
+<script src="https://taeoh-kim.github.io/plugins/filterzr/jquery.filterizr.min.js"></script>
+<!-- Smooth Scroll js -->
+<script src="https://taeoh-kim.github.io/plugins/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<!-- Main Script -->
+
+<script src="https://taeoh-kim.github.io/js/script.min.js"></script>
+</body>
+</html>

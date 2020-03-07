@@ -1,82 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://taeoh-kim.github.io/blog/bayesian-deep-learning-introduction/</loc>
+    <loc>https://taeoh-kim.github.io/blog/bayesian1/</loc>
     <lastmod>2018-08-07T16:11:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://taeoh-kim.github.io/blog/</loc>
-    <lastmod>2018-08-07T16:11:10+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://taeoh-kim.github.io/</loc>
     <lastmod>2018-08-07T16:11:10+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://taeoh-kim.github.io/blog/gan%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-image-to-image-translation-pix2pix-cyclegan-discogan/</loc>
-    <lastmod>2017-10-26T16:11:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://taeoh-kim.github.io/blog/cross-entropy%EC%9D%98-%EC%A0%95%ED%99%95%ED%95%9C-%ED%99%95%EB%A5%A0%EC%A0%81-%EC%9D%98%EB%AF%B8/</loc>
-    <lastmod>2017-09-26T16:11:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://taeoh-kim.github.io/blog/bayes-theorem%EA%B3%BC-sigmoid%EC%99%80-softmax%EC%82%AC%EC%9D%B4%EC%9D%98-%EA%B4%80%EA%B3%84/</loc>
-    <lastmod>2017-09-22T16:11:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://taeoh-kim.github.io/blog/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%EC%97%90%EC%84%9C%EC%9D%98-%ED%99%95%EB%A5%A0-%EB%B6%84%ED%8F%AC-%EB%9E%9C%EB%8D%A4-%EB%B3%80%EC%88%98-%EA%B7%B8%EB%A6%AC%EA%B3%A0-maximum-likelihood/</loc>
-    <lastmod>2017-09-20T16:11:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://taeoh-kim.github.io/blog/tensorflow%EB%A1%9C-50%EC%A4%84%EC%A7%9C%EB%A6%AC-original-gan-code-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0/</loc>
-    <lastmod>2017-08-10T16:11:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://taeoh-kim.github.io/blog/generative-models-part-2-improvedganinfoganebgan/</loc>
-    <lastmod>2017-07-27T16:11:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://taeoh-kim.github.io/blog/generative-models-part-1-vaegandcgan/</loc>
-    <lastmod>2017-07-06T16:11:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://taeoh-kim.github.io/blog/%EC%B2%AB-%ED%8F%AC%EC%8A%A4%ED%8C%85/</loc>
-    <lastmod>2017-07-06T15:38:25+09:00</lastmod>
+    <loc>https://taeoh-kim.github.io/blog/</loc>
+    <lastmod>2018-07-07T18:23:33+06:00</lastmod>
   </url>
   
   <url>
     <loc>https://taeoh-kim.github.io/contact/</loc>
-    <lastmod>2017-03-09T13:23:28+08:00</lastmod>
+    <lastmod>2018-07-07T15:53:27+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/portfolio/</loc>
+    <lastmod>2018-07-07T15:45:06+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/service/</loc>
+    <lastmod>2018-07-07T14:53:13+06:00</lastmod>
   </url>
   
   <url>
     <loc>https://taeoh-kim.github.io/about/</loc>
-    <lastmod>2017-03-09T13:19:25+08:00</lastmod>
+    <lastmod>2018-07-07T12:37:52+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/blog/image2image/</loc>
+    <lastmod>2017-10-26T16:11:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/blog/crossent/</loc>
+    <lastmod>2017-09-26T16:11:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/blog/softmax/</loc>
+    <lastmod>2017-09-22T16:11:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/blog/prob/</loc>
+    <lastmod>2017-09-20T16:11:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/blog/gantf/</loc>
+    <lastmod>2017-08-10T16:11:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/blog/gan2/</loc>
+    <lastmod>2017-07-27T16:11:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/blog/julysix/</loc>
+    <lastmod>2017-07-06T16:11:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://taeoh-kim.github.io/blog/first-korean-post/</loc>
+    <lastmod>2017-07-06T15:38:25+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://taeoh-kim.github.io/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://taeoh-kim.github.io/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>
