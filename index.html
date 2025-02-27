@@ -1,468 +1,438 @@
-
-<!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-  <title>Taeoh Kim</title>
-
-  <meta name="author" content="Taeoh Kim">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="icon" type="image/png" href="images/seal_icon.png">
+  <title>Taeoh Kim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:63%;vertical-align:middle">
-              <p style="text-align:center">
-                <name>Taeoh Kim</name>
-              </p>
-              <p>Research Engineer / Technical Lead. at, <a href="https://www.navercloudcorp.com/">NAVER Cloud Corp.</a>
-              </p>
-              <p>
-                As an engineer, I conduct research and development on technologies for video understanding and generation, and provide technical support for related services.
-              </p>
-              <p>
-                E-mail: taeoh.kim [at] navercorp.com
-              </p>
-              <p style="text-align:center">
-                <a href="https://scholar.google.com/citations?user=mMgadisAAAAJ&hl=ko">Google Scholar</a> &nbsp/&nbsp
-                <a href="https://www.linkedin.com/in/taeoh-kim-547683146">Linkedin</a>
-              </p>
-            </td>
-            <td style="padding:2.5%;width:40%;max-width:40%">
-              <a href="taeoh.jpeg"><img style="width:100%;max-width:100%" alt="profile photo" src="taeoh.jpeg" class="hoverZoomLink"></a>
-            </td>
-          </tr>
-        </tbody></table>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-        <h3>News!</h3>
-        <p>
-          [Nov 2024] <strong><span style="color:#EE5533">(New!)</span></strong> I gave a presentation in <strong><a href="https://dan.naver.com/24">DAN 24</a>, NAVER Conference</strong> <a href="https://dan.naver.com/24/sessions/595">[Session]</a> <a href="https://n.news.naver.com/article/018/0005887230?sid=105">[Press]</a> <br>
-          [Sep 2024] One Paper is accepted to <strong>NeurIPS 2024</span></strong> (Video Anomaly Detection).<br>
-          [Jul 2024] One Paper is accepted to <strong>ECCV 2024 <span style="color:#4555EE">(Oral)</span></strong> (Video Action Detection). <br>
-          [Jan 2024] I won the <strong>N Innovation Award 2023, R&D Track</strong> <a href="https://d2.naver.com/news/9489625">[About]</a> <a href="https://d2.naver.com/helloworld/7136716">[Post]</a>. <br>
-          [Aug 2023] One Paper is accepted to <strong>International Journal of Computer Vision</strong> (Image Processing). <br>
-          [Feb 2023] One Paper is accepted to <strong>CVPR 2023</strong> (Video Action Localization). <br>
-          [Jan 2023] One Paper is accepted to <strong>ICLR 2023 <span style="color:#4555EE">(Spotlight)</span></strong> (Video Understanding). <br>
-          [Nov 2022] One Paper is accepted to <strong>AAAI 2023 <span style="color:#4555EE">(Oral)</span></strong> (Video Representation Learning). <br>
-          [Apr 2022] One Paper is accepted to <strong>Pattern Recognition</strong> (Video Anomaly Detection). <br>
-          [Dec 2021] One Paper is accepted to <strong>IEEE Transactions on Image Processing</strong> (Video Deblurring). <br>
-          [Nov 2021] One Paper is accepted to <strong>IEEE Transactions on Image Processing</strong> (Image Compression). <br>
-              </p>
-        <br>
+<nav id="sidebar" class="d-none d-lg-block">
+    <h2 class="sidebar-title">Taeoh Kim</h2>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#about">Bio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#news">News</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#publications">Publications</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#contact">Contacts</a>
+        </li>
+    </ul>
+</nav>
 
-        <h3>Publications</h3>
+<button class="btn btn-primary d-lg-none position-fixed top-0 start-0 m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+    <i class="bi bi-list"></i>
+</button>
 
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src="mdvad.png" alt="mdvad" width="240" height="100" style="border-style: none">
-          </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
-              <papertitle>Towards Multi-Domain Learning for Generalizable Video Anomaly Detection</papertitle>
-            <br><br>
-            MyeongAh Cho, <strong>Taeoh Kim</strong>, Minho Shim, Dongyoon Wee, Sangyoun Lee
-            <br><br>
-            <em>NeurIPS</em>, 2024
-            <br>
-            <a href="https://openreview.net/pdf?id=ywEQkCmImh">Paper</a> / <a href="https://taeoh-kim.github.io">Project Page (Coming Soon)</a>
-            <br>
-            <p></p>
-          </td>
-        </tr>
+<div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+<div class="offcanvas-header">
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+</div>
+<div class="offcanvas-body">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="#about" data-bs-dismiss="offcanvas">Bio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#news" data-bs-dismiss="offcanvas">News</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#publications" data-bs-dismiss="offcanvas">Publications</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#contact" data-bs-dismiss="offcanvas">Contacts</a>
+        </li>
+    </ul>
+</div>
+</div>
 
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src="cmatter.png" alt="cmatter" width="240" height="100" style="border-style: none">
-          </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
-              <papertitle>Classification Matters: Improving Video Action Detection with Class-Specific Attention</papertitle>
-            <br><br>
-            Jinsung Lee, <strong>Taeoh Kim</strong>, Inwoong Lee, Minho Shim, Dongyoon Wee, Minsu Cho, Suha Kwak
-            <br><br>
-            <em>ECCV</em>, 2024 <strong><span style="color:#4555EE">(Oral Presentation, 2.3% Acceptance Rate)</span></strong>
-            <br>
-            <a href="https://arxiv.org/pdf/2407.19698">Paper</a> / <a href="https://jinsingsangsung.github.io/ClassificationMatters/">Project Page</a> / <a href="https://github.com/naver-ai/class-query-vad">Code</a>
-            <br>
-            <p></p>
-          </td>
-        </tr>
+<div id="main-content">
+    <h2 class="mobile-title d-lg-none">Taeoh Kim</h2>
+    <section id="about">
+      <h1>Bio</h1>
+      <img src="taeoh.jpeg" alt="Profile Picture" class="profile-img">
+      <p>I am a Researcher & Engineer in NAVER Cloud Corporation.</p>
+      <p>Before joining NAVER, I obtained my Ph.D. in Electronic Engineering at Yonsei University under the supervision of Prof. Sangyoun Lee.</p>
+      <p>I conduct research and development on technologies for Video Understanding and Generation, and provide technical support for related services.</p>
+      <p>Also, we are always looking for an Intern interested in Video-related research. Please feel free to contact me.</p>
+    </section>
 
+    <section id="news">
+      <h1>News</h1>
+      <ul class="list-group">
+        <div class="news-item d-flex flex-column flex-md-row justify-content-between align-items-start border-bottom pb-2 mb-3">
+            <div class="news-date" style="font-size: 0.9rem;">2025-02</div>
+            <div class="news-content ms-md-3">
+              One paper is accepted to CVPR 2025.
+            </div>
+        </div>
+        <div class="news-item d-flex flex-column flex-md-row justify-content-between align-items-start border-bottom pb-2 mb-3">
+            <div class="news-date" style="font-size: 0.9rem;">2024-11</div>
+            <div class="news-content ms-md-3">
+               I gave a presentation in <a href="https://dan.naver.com/24">DAN 24</a>, NAVER Conference. <a href="https://dan.naver.com/24/sessions/595">[Session]</a> <a href="https://n.news.naver.com/article/018/0005887230?sid=105">[Press]</a> 
+            </div>
+        </div>
+        <div class="news-item d-flex flex-column flex-md-row justify-content-between align-items-start border-bottom pb-2 mb-3">
+            <div class="news-date" style="font-size: 0.9rem;">2024-09</div>
+            <div class="news-content ms-md-3">
+              One paper is accepted to NeurIPS 2024.
+            </div>
+        </div>
+        <div class="news-item d-flex flex-column flex-md-row justify-content-between align-items-start border-bottom pb-2 mb-3">
+            <div class="news-date" style="font-size: 0.9rem;">2024-07</div>
+            <div class="news-content ms-md-3">
+              One paper is accepted to ECCV 2024 as an <strong>Oral Presentation</strong>.
+            </div>
+        </div>
+        <div class="news-item d-flex flex-column flex-md-row justify-content-between align-items-start border-bottom pb-2 mb-3">
+            <div class="news-date" style="font-size: 0.9rem;">2024-01</div>
+            <div class="news-content ms-md-3">
+               I  won the N Innovation Award 2023. <a href="https://d2.naver.com/news/9489625">[About]</a>
+            </div>
+        </div>
+      </ul>
+    </section>
 
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src="ijcv.png" alt="ijcv" width="240" height="140" style="border-style: none">
-          </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
-              <papertitle>A Nonlinear, Regularized, and Data-independent Modulation for Continuously Interactive Image Processing Network</papertitle>
-            <br><br>
-            Hyeongmin Lee, <strong>Taeoh Kim</strong>, Hanbin Son, Sangwook Baek, Minsu Cheon, Sangyoun Lee
-            <br><br>
-            <em>Internation Journal of Computer Vision (IJCV, IF 19.5)</em>, 2023
-            <br>
-            <a href="https://link.springer.com/article/10.1007/s11263-023-01874-y">Paper</a>
-            <p></p>
-          </td>
-        </tr>
+    <section id="publications">
+      <h1>Publications</h1>
 
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/cocogaussian.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>CoCoGaussian: Leveraging Circle of Confusion for Gaussian Splatting from Defocused Images</h5>
+          <p class="authors">Jungho Lee, Suhwan Cho, <span class="highlight">Taeoh Kim</span>, Ho-Deok Jang, Minhyeok Lee, Geonho Cha, Dongyoon Wee, Dogyoon Lee, Sangyoun Lee</p>
+          <p class="conference-name">CVPR 2025</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/2412.16028" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+            <a href="https://jho-yonsei.github.io/CoCoGaussian/" target="_blank" class="btn btn-pill btn-outline-primary">Project</a>
+            <a href="https://github.com/Jho-Yonsei/CoCoGaussian" target="_blank" class="btn btn-pill btn-outline-primary">Code</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/mdvad.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Towards Multi-Domain Learning for Generalizable Video Anomaly Detection</h5>
+          <p class="authors">MyeongAh Cho, <span class="highlight">Taeoh Kim</span>, Minho Shim, Dongyoon Wee, Sangyoun Lee</p>
+          <p class="conference-name">NeurIPS 2024</p>
+          <div class="d-flex gap-2">
+            <a href="https://openreview.net/pdf?id=ywEQkCmImh" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src="dcd.png" alt="dcd" width="240" height="140" style="border-style: none">
-          </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
-              <papertitle>Decomposed Cross-modal Distillation for RGB-based Temporal Action Detection</papertitle>
-            <br><br>
-            Pilhyeon Lee, <strong>Taeoh Kim</strong>, Minho Shim, Dongyoon Wee, Hyeran Byun
-            <br><br>
-            <em>CVPR</em>, 2023
-            <br>
-            <a href="https://arxiv.org/abs/2303.17285">Paper</a>
-            <p></p>
-          </td>
-        </tr>
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/cmatters.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Classification Matters: Improving Video Action Detection with Class-Specific Attention</h5>
+          <p class="authors">Jinsung Lee, <span class="highlight">Taeoh Kim</span>, Inwoong Lee, Minho Shim, Dongyoon Wee, Minsu Cho, Suha Kwak</p>
+          <p class="conference-name">ECCV 2024 (Oral)</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/2407.19698" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+            <a href="https://jinsingsangsung.github.io/ClassificationMatters/" target="_blank" class="btn btn-pill btn-outline-primary">Project</a>
+            <a href="https://github.com/naver-ai/class-query-vad" target="_blank" class="btn btn-pill btn-outline-primary">Code</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/ijcv.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>A Nonlinear, Regularized, and Data-independent Modulation for Continuously Interactive Image Processing Network</h5>
+          <p class="authors">Hyeongmin Lee, <span class="highlight">Taeoh Kim</span>, Hanbin Son, Sangwook Baek, Minsu Cheon, Sangyoun Lee</p>
+          <p class="conference-name">Internation Journal of Computer Vision 2023 (IJCV, IF 11.6)</p>
+          <div class="d-flex gap-2">
+            <a href="https://link.springer.com/article/10.1007/s11263-023-01874-y" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/dcd.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Decomposed Cross-modal Distillation for RGB-based Temporal Action Detection</h5>
+          <p class="authors">Pilhyeon Lee, <span class="highlight">Taeoh Kim</span>, Minho Shim, Dongyoon Wee, Hyeran Byun</p>
+          <p class="conference-name">CVPR 2023</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/2303.17285" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src="dynaaug.png" alt="dynaaug" width="240" height="110" style="border-style: none">
-          </td>
-          <td style="padding:20px;width:75%;vertical-align:middle">
-              <papertitle>Exploring Temporally Dynamic Data Augmentation for Video Recognition</papertitle>
-            <br><br>
-            <strong>Taeoh Kim</strong>, Jinhyung Kim, Minho Shim, Sangdoo Yun, Myunggu Kang, Dongyoon Wee,
-            Sangyoun Lee
-            <br><br>
-            <em>ICLR</em>, 2023 <strong><span style="color:#4555EE">(Spotlight Presentation, Notable Top 25%)</span></strong>
-            <br>
-            <a href="https://arxiv.org/abs/2206.15015">Paper</a> /
-            <a href="https://openreview.net/pdf?id=fxjzKOdw9wb">OpenReview</a>
-            <p></p>
-          </td>
-        </tr>
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/dynaaug.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Exploring Temporally Dynamic Data Augmentation for Video Recognition</h5>
+          <p class="authors"><span class="highlight">Taeoh Kim</span>, Jinhyung Kim, Minho Shim, Sangdoo Yun, Myunggu Kang, Dongyoon Wee, Sangyoun Lee</p>
+          <p class="conference-name">ICLR 2023 (Spotlight)</p>
+          <div class="d-flex gap-2">
+            <a href="https://openreview.net/pdf?id=fxjzKOdw9wb" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/freqaug.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Frequency Selective Augmentation for Video Representation Learning</h5>
+          <p class="authors">Jinhyung Kim, <span class="highlight">Taeoh Kim</span>, Minho Shim, Dongyoon Han, Dongyoon Wee, Junmo Kim</p>
+          <p class="conference-name">AAAI 2023 (Oral)</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/2204.03865" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
+       <!-- Publication Item -->
+       <div class="publication-item">
+        <img src="images/flowano.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Unsupervised Video Anomaly Detection via Normalizing Flows with Implicit Latent Features</h5>
+          <p class="authors">MyeongAh Cho, <span class="highlight">Taeoh Kim</span>, Woo Jin Kim, Suhwan Cho, Sangyoun Lee</p>
+          <p class="conference-name">Pattern Recognition 2022 (PR, IF 7.5)</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/2010.07524" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
-        <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="freqaug.png" alt="freqaug" width="240" height="140" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Frequency Selective Augmentation for Video Representation Learning</papertitle>
-              <br><br>
-              Jinhyung Kim,
-              <strong>Taeoh Kim</strong>, Minho Shim, Dongyoon Han, Dongyoon Wee,
-              Junmo Kim
-              <br><br>
-              <em>AAAI</em>, 2023 <strong><span style="color:#4555EE">(Oral Presentation)</span></strong>
-              <br>
-              <a href="https://arxiv.org/abs/2204.03865">Paper</a>
-              <p></p>
-            </td>
-          </tr>
+       <!-- Publication Item -->
+       <div class="publication-item">
+        <img src="images/geovd.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Geometry-Aware Deep Video Deblurring via Recurrent Feature Refinement</h5>
+          <p class="authors"><span class="highlight">Taeoh Kim</span>, Sangyoun Lee</p>
+          <p class="conference-name">IEEE Transactions on Image Processing 2022 (IEEE TIP, IF 10.8)</p>
+          <div class="d-flex gap-2">
+            <a href="https://ieeexplore.ieee.org/document/9674805/" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
+       <!-- Publication Item -->
+       <div class="publication-item">
+        <img src="images/acn.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Enhanced Standard Compatible Image Compression Framework based on Auxiliary Codec Networks</h5>
+          <p class="authors">Hanbin Son, <span class="highlight">Taeoh Kim</span>, Hyeongmin Lee, Sangyoun Lee</p>
+          <p class="conference-name">IEEE Transactions on Image Processing 2021 (IEEE TIP, IF 10.8)</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/2009.14754" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
+       <!-- Publication Item -->
+       <div class="publication-item">
+        <img src="images/spn.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Block-Attentive Subpixel Prediction Networks for Computationally Efficient Image Restoration</h5>
+          <p class="authors"><span class="highlight">Taeoh Kim</span>, Chajin Shin, Sangjin Lee, Sangyoun Lee</p>
+          <p class="conference-name">IEEE Access 2021 (IF 3.4)</p>
+          <div class="d-flex gap-2">
+            <a href="https://ieeexplore.ieee.org/document/9464349" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
+       <!-- Publication Item -->
+       <div class="publication-item">
+        <img src="images/tta.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Test-Time Adaptation for Out-of-distributed Image Inpainting</h5>
+          <p class="authors">Chajin Shin, <span class="highlight">Taeoh Kim</span>, Sangjin Lee, Sangyoun Lee</p>
+          <p class="conference-name">ICIP 2021</p>
+          <div class="d-flex gap-2">
+            <a href="https://ieeexplore.ieee.org/document/9506461" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+            <a href="https://github.com/ChajinShin/AdaFill-Image_Inpainting" target="_blank" class="btn btn-pill btn-outline-primary">Code</a>
+          </div>
+        </div>
+      </div>
 
-
-
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="flowano.png" alt="flowano" width="240" height="140" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Unsupervised Video Anomaly Detection via Normalizing Flows with Implicit Latent Features</papertitle>
-              <br><br>
-              MyeongAh Cho,
-              <strong>Taeoh Kim</strong>, Woo Jin Kim, Suhwan Cho,
-              Sangyoun Lee
-              <br><br>
-              <em>Pattern Recognition (PR, IF 8.0)</em>, 2022
-              <br>
-              <a href="https://arxiv.org/abs/2010.07524">Paper</a>
-              <p></p>
-            </td>
-          </tr>
-
-
-
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="geovd.png" alt="geovd" width="240" height="120" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Geometry-Aware Deep Video Deblurring via Recurrent Feature Refinement</papertitle>
-              <br><br>
-              <strong>Taeoh Kim</strong>,
-              Sangyoun Lee
-              <br><br>
-              <em>IEEE Transactions on Image Processing (TIP, IF 10.6)</em>, 2022
-              <br>
-              <a href="https://ieeexplore.ieee.org/document/9674805/">Paper</a>
-              <p></p>
-            </td>
-          </tr>
-
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="acn.png" alt="acn" width="240" height="80" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Enhanced Standard Compatible Image Compression Framework based on Auxiliary Codec Networks</papertitle>
-              <br><br>
-              Hanbin Son, <strong>Taeoh Kim</strong>, Hyeongmin Lee,
-              Sangyoun Lee
-              <br><br>
-              <em>IEEE Transactions on Image Processing (TIP, IF 10.6)</em>, 2021
-              <br>
-              <a href="https://arxiv.org/pdf/2009.14754.pdf">Paper</a>
-              <p></p>
-            </td>
-          </tr>
-
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="spn.png" alt="spn" width="240" height="60" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Block-Attentive Subpixel Prediction Networks for Computationally Efficient Image Restoration</papertitle>
-              <br><br>
-              <strong>Taeoh Kim</strong>,
-              Chajin Shin,
-              Sangjin Lee,
-              Sangyoun Lee
-              <br><br>
-              <em>IEEE Access (IF 3.367)</em>, 2021
-              <br>
-              <a href="https://ieeexplore.ieee.org/document/9464349">Paper</a>
-              <p></p>
-            </td>
-          </tr>
-
-
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="tta.png" alt="tta" width="240" height="140" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Test-Time Adaptation for Out-of-distributed Image Inpainting</papertitle>
-              <br><br>
-              Chajin Shin,
-              <strong>Taeoh Kim</strong>,
-              Sangjin Lee,
-              Sangyoun Lee
-              <br><br>
-              <em>ICIP</em>, 2021
-              <br>
-              <a href="https://ieeexplore.ieee.org/document/9506461">Paper</a> /
-              <a href="https://github.com/ChajinShin/AdaFill-Image_Inpainting">Code</a>
-              <p></p>
-            </td>
-          </tr>
-
-
-
-
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="aim.png" alt="aim" width="240" height="140" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>AIM 2020 Challenge on Image Extreme Inpainting</papertitle>
-              <br>
-              <strong>2nd Place</strong> in the Image Inpainting Challenge Track 1: Classic Inpainting<br><br>
-              Evangelos Ntavelis, Andr´es Romero, Siavash Bigdeli, Radu Timofte, Zheng Hui, Xiumei Wang, Xinbo Gao, Chajin Shin,
-              <strong>Taeoh Kim</strong>, Hanbin Son, Sangyoun Lee et al.
-              <br><br>
-              <em>ECCV Workshops (Advances in Image Manipulation (AIM))</em>, 2020
-              <br>
-              <a href="https://arxiv.org/abs/2010.01110">Paper</a>
-              <p></p>
-            </td>
-          </tr>
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/viprior.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Learning Temporally Invariant and Localizable Features via Data Augmentation for Video Recognition</h5>
+          <p class="authors"><span class="highlight">Taeoh Kim*</span>, Hyeongmin Lee*, MyeongAh Cho*, Ho Seong Lee, Dong Heon Cho, Sangyoun Lee</p>
+          <p class="conference-name">ECCV Workshop 2020</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/2008.05721" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
 
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/rgm.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Relational Deep Feature Learning for Heterogeneous Face Recognition</h5>
+          <p class="authors">MyeongAh Cho, <span class="highlight">Taeoh Kim</span>, Ig-Jae Kim, Kyungjae Lee, Sangyoun Lee</p>
+          <p class="conference-name">IEEE Transactions on Information Forensics and Security 2020 (IEEE TIFS, IF 6.3)</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/2003.00697" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/eic.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Extrapolative-Interpolative Cycle-Consistency Learning For Video Frame Extrapolation</h5>
+          <p class="authors">Sangjin Lee, Hyeongmin Lee, <span class="highlight">Taeoh Kim</span>, Sangyoun Lee</p>
+          <p class="conference-name">ICIP 2020</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/2005.13194" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/adacof.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>AdaCoF: Adaptive Collaboration of Flows for Video Frame Interpolation</h5>
+          <p class="authors">Hyeongmin Lee, <span class="highlight">Taeoh Kim</span>, Tae-Young Chung, Daehyun Pak, Yuseok Ban, Sangyoun Lee</p>
+          <p class="conference-name">CVPR 2020</p>
+          <div class="d-flex gap-2">
+            <a href="https://arxiv.org/abs/1907.10244" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+            <a href="https://github.com/HyeongminLEE/AdaCoF-pytorch" target="_blank" class="btn btn-pill btn-outline-primary">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/tracking.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Sampling Operator to Learn the Scalable Correlation Filter for Visual Tracking</h5>
+          <p class="authors">Minkyu Lee, <span class="highlight">Taeoh Kim</span>, Yuseok Ban, Eungyeol Song, Sangyoun Lee</p>
+          <p class="conference-name">IEEE Access 2019 (IF 3.4)</p>
+          <div class="d-flex gap-2">
+            <a href="https://ieeexplore.ieee.org/document/8803503" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="viprior.png" alt="viprior" width="240" height="130" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Learning Temporally Invariant and Localizable Features via Data Augmentation for Video Recognition</papertitle>
-              <br>
-              <strong>4th Place</strong> in the VIPriors Action Recognition Challenge<br><br>
-              <strong>Taeoh Kim*</strong>,
-              Hyeongmin Lee*, MyeongAh Cho*, Ho Seong Lee, Dong Heon Cho, Sangyoun Lee (*Equal Contribution)
-              <br><br>
-              <em>ECCV Workshops (1st Visual Inductive Priors (VIPriors) for Data-Efficient Deep Learning Workshop)</em>, 2020
-              <br>
-              <a href="https://arxiv.org/abs/2008.05721">Paper</a>
-              <p></p>
-            </td>
-          </tr>
+       <!-- Publication Item -->
+       <div class="publication-item">
+        <img src="images/sfcnn.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>SF-CNN: A Fast Compression Artifacts Removal via Spatial-To-Frequency Convolutional Neural Networks</h5>
+          <p class="authors"><span class="highlight">Taeoh Kim</span>, Hyeongmin Lee, Hanbin Son, Sangyoun Lee</p>
+          <p class="conference-name">ICIP 2019</p>
+          <div class="d-flex gap-2">
+            <a href="https://ieeexplore.ieee.org/document/8803503" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
+
+       <!-- Publication Item -->
+       <div class="publication-item">
+        <img src="images/relationmodule.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>NIR-to-VIS Face Recognition via Embedding Relations and Coordinates of the Pairwise Features</h5>
+          <p class="authors">MyeongAh Cho, Tae-Young Chung, <span class="highlight">Taeoh Kim</span>, Sangyoun Lee</p>
+          <p class="conference-name">ICB 2019</p>
+          <div class="d-flex gap-2">
+            <a href="https://ieeexplore.ieee.org/document/8987306" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
 
+      <!-- Publication Item -->
+      <div class="publication-item">
+        <img src="images/collabonet.png" alt="Teaser Image">
+        <div class="publication-details">
+          <h5>Collabonet: Collaboration of Generative Models by Unsupervised Classification</h5>
+          <p class="authors">Hyeongmin Lee, <span class="highlight">Taeoh Kim</span>, Eungyeol Song, Sangyoun Lee</p>
+          <p class="conference-name">ICIP 2018</p>
+          <div class="d-flex gap-2">
+            <a href="https://ieeexplore.ieee.org/document/8451825" target="_blank" class="btn btn-pill btn-outline-primary">Paper</a>
+          </div>
+        </div>
+      </div>
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="rgm.png" alt="spn" width="240" height="130" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Relational Deep Feature Learning for Heterogeneous Face Recognition</papertitle>
-              <br><br>
-              MyeongAh Cho,
-              <strong>Taeoh Kim</strong>,
-              Ig-Jae Kim, Kyungjae Lee, Sangyoun Lee
-              <br><br>
-              <em>IEEE Transactions on Information Forensics and Security (IF 7.718)</em>, 2020
-              <br>
-              <a href="https://arxiv.org/abs/2003.00697">Paper</a>
-              <p></p>
-            </td>
-          </tr>
+    </section>
 
+    <section id="contact" class="mb-3">
+    <h1>Contacts</h1>
+        <div class="d-flex flex-column flex-lg-row gap-3 align-items-start">
+            <a href="mailto:taeoh.kim@navercorp.com" class="contact-btn contact-btn-mobile-30">
+            <i class="bi bi-envelope-fill"></i> E-mail
+            </a>
+            <a href="https://www.linkedin.com/in/taeoh-kim-547683146" target="_blank" class="contact-btn contact-btn-mobile-30">
+            <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://scholar.google.com/citations?user=mMgadisAAAAJ&hl=ko" target="_blank" class="contact-btn contact-btn-mobile-30">
+            <i class="bi bi-google"></i> Google Scholar
+            </a>
+        </div>
+    </section>
+  </div>
 
+<button id="topButton" class="btn btn-primary">
+    <i class="bi bi-arrow-up"></i>
+  </button>
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="eic.png" alt="spn" width="240" height="130" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Extrapolative-Interpolative Cycle- Consistency Learning For Video Frame Extrapolation</papertitle>
-              <br><br>
-              Sangjin Lee, Hyeongmin Lee,
-              <strong>Taeoh Kim</strong>, Sangyoun Lee
-              <br><br>
-              <em>ICIP</em>, 2020
-              <br>
-              <a href="https://arxiv.org/abs/2005.13194">Paper</a>
-              <p></p>
-            </td>
-          </tr>
+  <footer id="footer" class="footer mt-3 py-3 text-center">
+    <div class="container">
+      <hr style="border: none; height: 2px; background: linear-gradient(90deg, #00FF00, transparent); margin-bottom: 10px;">
+      <p class="mb-0">
+        &copy;
+        <span style="color: #00FF00;">Made by Taeoh Kim</span>
+        | Last Update: <span style="color: #00FF00;">2025-02-26</span>
+      </p>
+    </div>
+  </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelectorAll('.offcanvas .nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.getAttribute('href');
+        const offcanvasEl = document.getElementById('mobileSidebar');
+        const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl) || new bootstrap.Offcanvas(offcanvasEl);
+        bsOffcanvas.hide();
 
+        setTimeout(() => {
+          const targetEl = document.querySelector(target);
+          if(targetEl){
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+            history.pushState(null, '', target);
+          }
+        }, 300);
+      });
+    });
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="adacof.png" alt="spn" width="240" height="130" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>AdaCoF: Adaptive Collaboration of Flows for Video Frame Interpolation</papertitle>
-              <br><br>
-              Hyeongmin Lee,
-              <strong>Taeoh Kim</strong>,
-              Tae-Young Chung, Daehyun Pak, Yuseok Ban, Sangyoun Lee
-              <br><br>
-              <em>CVPR</em>, 2020
-              <br>
-              <a href="https://arxiv.org/abs/1907.10244">Paper</a> /
-              <a href="https://github.com/HyeongminLEE/AdaCoF-pytorch">Code</a>
-              <p></p>
-            </td>
-          </tr>
-
-
-
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="tracking.png" alt="spn" width="240" height="130" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Sampling Operator to Learn the Scalable Correlation Filter for Visual Tracking</papertitle>
-              <br><br>
-              Minkyu Lee,
-              <strong>Taeoh Kim</strong>, Yuseok Ban, Eungyeol Song, Sangyoun Lee
-              <br><br>
-              <em>IEEE Access (IF 3.367)</em>, 2019
-              <br>
-              <a href="https://ieeexplore.ieee.org/document/8613772">Paper</a>
-              <p></p>
-            </td>
-          </tr>
-
-
-
-            <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="sfcnn.png" alt="spn" width="240" height="100" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>SF-CNN: A Fast Compression Artifacts Removal via Spatial-To-Frequency Convolutional Neural Networks</papertitle>
-              <br><br>
-              <strong>Taeoh Kim</strong>, Hyeongmin Lee, Hanbin Son, Sangyoun Lee
-              <br><br>
-              <em>ICIP</em>, 2019
-              <br>
-              <a href="https://ieeexplore.ieee.org/document/8803503">Paper</a>
-              <p></p>
-            </td>
-          </tr>
-
-
-
-
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="relationmodule.png" alt="spn" width="240" height="130" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>NIR-to-VIS Face Recognition via Embedding Relations and Coordinates of the Pairwise Features</papertitle>
-              <br><br>
-              MyeongAh Cho, Tae-Young Chung,
-              <strong>Taeoh Kim</strong>, Sangyoun Lee
-              <br><br>
-              <em>ICB</em>, 2019
-              <br>
-              <a href="https://ieeexplore.ieee.org/document/8987306">Paper</a>
-              <p></p>
-            </td>
-          </tr>
-
-
-
-                  <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="collabonet.png" alt="spn" width="240" height="60" style="border-style: none">
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-                <papertitle>Collabonet: Collaboration of Generative Models by Unsupervised Classification</papertitle>
-              <br><br>
-              Hyeongmin Lee,
-              <strong>Taeoh Kim</strong>, Eungyeol Song, Sangyoun Lee
-              <br><br>
-              <em>ICIP</em>, 2018
-              <br>
-              <a href="https://ieeexplore.ieee.org/document/8451825">Paper</a>
-              <p></p>
-            </td>
-          </tr>
-
-
-
-
-        </tbody></table>
-
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:0px">
-              <br>
-              <p style="text-align:right;font-size:small;">
-                <a href="https://github.com/jonbarron/jonbarron_website">Source</a>
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-      </td>
-    </tr>
-  </table>
+    document.getElementById('topButton').addEventListener('click', function() {
+        window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+        });
+    });
+  </script>
 </body>
-
 </html>
