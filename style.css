@@ -183,6 +183,10 @@ section h1::after {
     color: #00FF00;
     font-weight: 700;
 }
+.btn-outline-primary {
+    color: #8df7ff;
+    border-color: #8df7ff;
+}
 .btn-pill {
     border-radius: 50px;
     padding: 0.3rem 0.8rem;
@@ -190,7 +194,8 @@ section h1::after {
     transition: background 0.3s, color 0.3s;
 }
 .btn-pill:hover {
-    background-color: #00FF00;
+    background-color: #8df7ff;
+    border-color: #8df7ff;
     color: #121212;
 }
 .contact-btn {
