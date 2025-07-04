@@ -26,6 +26,9 @@
         <li class="nav-item">
             <a class="nav-link" href="#contact">Contacts</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="publications.html">NC Video</a>
+      </li>
     </ul>
 </nav>
 
@@ -51,6 +54,9 @@
         <li class="nav-item">
             <a class="nav-link" href="#contact" data-bs-dismiss="offcanvas">Contacts</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="publications.html">Subpage</a>
+      </li>
     </ul>
 </div>
 </div>
@@ -434,19 +440,27 @@
   <script>
     document.querySelectorAll('.offcanvas .nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = link.getAttribute('href');
-        const offcanvasEl = document.getElementById('mobileSidebar');
-        const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl) || new bootstrap.Offcanvas(offcanvasEl);
-        bsOffcanvas.hide();
+        const href = link.getAttribute('href');
 
-        setTimeout(() => {
-          const targetEl = document.querySelector(target);
-          if(targetEl){
-            targetEl.scrollIntoView({ behavior: 'smooth' });
-            history.pushState(null, '', target);
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+
+          const target = href;
+          const offcanvasEl = document.getElementById('mobileSidebar');
+          const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+
+          if (bsOffcanvas) {
+            bsOffcanvas.hide();
           }
-        }, 300);
+
+          setTimeout(() => {
+            const targetEl = document.querySelector(target);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+              history.pushState(null, '', target);
+            }
+          }, 300);
+        }
       });
     });
 
