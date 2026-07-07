@@ -251,9 +251,16 @@ section h1::after {
         padding: 20px;
     }
 }
-/* 반응형으로 간단하게 중앙 정렬 유지 */
 @media (max-width: 576px) {
     .footer {
-        font-size: 0.8rem; /* 모바일에서 조금 더 작게 */
+        font-size: 0.8rem;
+    }
+    .contact-btn {
+        display: flex;
+        justify-content: center;
+        margin-right: 0;
+        margin-bottom: 8px;
+        padding: 0.45rem 0.8rem;
+        font-size: 0.85rem;
     }
 }
