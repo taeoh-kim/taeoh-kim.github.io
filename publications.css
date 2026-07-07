@@ -1,0 +1,47 @@
+.publication-item {
+    padding: 12px 0;
+    margin-bottom: 0;
+}
+.publication-item h5 {
+    margin-bottom: 4px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+.publication-item .authors {
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+.publication-item .pub-meta {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.publication-item .conference-name {
+    font-weight: 700;
+    color: #00FF00;
+}
+.pub-badge {
+    background: #e91e7a;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 50px;
+}
+.btn-paper {
+    color: #8df7ff;
+    border: 1px solid #8df7ff;
+    border-radius: 50px;
+    padding: 0px 10px;
+    font-size: 0.78rem;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+.btn-paper:hover {
+    background-color: #8df7ff;
+    color: #121212;
+    text-decoration: none;
+}
