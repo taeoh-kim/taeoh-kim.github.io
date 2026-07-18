@@ -99,7 +99,7 @@ button[data-bs-toggle="offcanvas"] {
     position: fixed;
     top: 15px;
     left: 15px;
-    z-index: 1100;
+    z-index: 1040;
 }
 #main-content {
     margin-left: 250px;
